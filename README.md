@@ -1,6 +1,6 @@
 # ACTAM-Project
 
-URL: https://matteodigii.github.io/ACTAM-Project/
+URL: https://matteodigii.github.io/ACTAM-Project/Guitar-Pedalboard
 
 This is the repo to deploy our web guitar pedalboard app for the ACTAM 2024/25 course.
 This project was made in a groud formed by Andrea Antognetti and Matteo Di Giovanni
