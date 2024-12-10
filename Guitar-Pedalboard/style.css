@@ -1,108 +1,97 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
 body {
+    font-family: Arial, sans-serif;
+    background-image: url('img/texture2.jpg'); /* Aggiungi il percorso dell'immagine di texture */
+    background-repeat: repeat; /* Ripete l'immagine per coprire tutto lo sfondo */
+    background-size: cover; /* Usa questa se vuoi che l'immagine si adatti alle dimensioni della finestra */
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /*gli elementi dentro il body saranno centrati e disposti orizzontalmente */
+    align-items: center; /* allineati verticalmente*/
     height: 100vh;
-    background-color: #f0f0f0;
+    margin: 0;
 }
 
 .pedal {
-    width: 250px;
-    height: 400px;
-    background-color: #1f1f1f;
-    border: 4px solid #333;
-    border-radius: 10px;
+   
+    background-color: #333;  /* Colore di sfondo scuro predefinito se non specificato in un id */
+    padding: 10px;  /* Spaziatura interna */
+    border-radius: 15px;  /* Bordo smussato */
     padding: 20px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    color: white;
+    width: 170px;  
+    height: 320px; 
+    margin: 20px;  /* Aggiungi un margine per separare i pedali */
+    box-shadow: 5px 30px 10px rgba(0, 0, 0, 0.3);  /* Ombra più discreta e naturale */
+}
+
+
+.block-3D {
+    background-color: #000;  /* Colore di sfondo nero */
     position: relative;
+    width: calc(100% + 40px);  /* Aggiungo il padding orizzontale (20px per lato) */
+    height: 100px;  /* Altezza fissa del blocco 3D */
+    border-radius: 15px;  /* Bordi smussati */
+    bottom: -30%;
+    left: -20px;
+    
+    z-index: -1;
+}
+
+#block-3D-chorus {
+    background-color: #4C0827
+}
+
+#block-3D-reverb {
+    background-color: #c67e46
+}
+
+#chorus-pedal {
+    background: linear-gradient(to bottom right, #78244a 0%, #6F0C38 50%);
+}
+
+#reverb-pedal {
+    background: linear-gradient(to right, #ffc49a, #ffc165); 
 }
 
 .pedal-top h2 {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #ff6600;
+    text-align: center;
+    color: #321122; /* Colore grigio scuro */
+    font-family: 'Oswald', sans-serif; /* Font con effetto corsivo elegante */
+    font-size: 25px; /* Dimensione grande per maggiore impatto */
+    font-weight: bold; /* Grassetto per evidenziare */
+    letter-spacing: 1px; /* Distanza tra le lettere per un effetto più elegante */
+    margin-bottom: 20px; /* Distanza sotto */
 }
 
-.pedal-top h3 {
-    font-size: 1em;
-    color: #ddd;
-}
-
-/* Aggiungi uno spazio sopra gli slider per evitare che coprano il testo */
 .knobs {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 60px; /* Spostiamo gli slider più in basso */
-    margin-bottom: 20px; /* Aggiungiamo uno spazio sotto gli slider */
-}
-
-.knob {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
-}
-
-.knob label {
-    font-size: 0.8em;
-    margin-bottom: 5px;
-}
-
-.knob input[type="range"] {
-    width: 50px;
-    transform: rotate(-90deg);
-    -webkit-appearance: none;
-    appearance: none;
-    background: #444;
-}
-
-.knob input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 10px;
-    height: 10px;
-    background-color: #ff6600;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-/* Posizionamento e stile del footswitch (pulsanti ON/OFF e STOP) */
-.footswitch {
-    margin-top: 20px;
     display: flex;
     justify-content: space-between;
 }
 
-.footswitch button {
-    width: 100px;
-    height: 40px;
-    background-color: #333;
-    border: none;
-    border-radius: 5px;
+.knob {
     color: white;
-    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.knob input[type="range"] {
+    width: 100%;
+}
+
+.footswitch {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #444;
+    color: white;
+    padding: 10px;
+    border: none;
     cursor: pointer;
+    border-radius: 5px;
 }
 
-/* LED per l'indicazione di stato */
-.led {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
-
-.led-light {
-    width: 15px;
-    height: 15px;
-    background-color: red;
-    border-radius: 50%;
+button:hover {
+    background-color: #666;
 }
