@@ -1,41 +1,65 @@
-
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedale Delay Boss Style</title>
+    <title>Guitar Pedalboard</title>
     <link rel="stylesheet" href="style.css">
+   
+    
 </head>
 <body>
-    <div class="pedal">
-        <div class="pedal-top">
-            <h2>BOSS</h2>
-            <h3>Digital Delay</h3>
-        </div>
+    <div class="pedal" id="chorus-pedal">
+        <header class="pedal-top">
+            <h2>Chorus</h2>
+        </header>
+        
+        <!-- Blocco manopole -->
         <div class="knobs">
             <div class="knob">
-                <label for="knob-time">Time</label>
-                <input type="range" id="knob-time" min="0" max="100">
+                <label for="knob-mix">Mix</label>
+                <input type="range" id="knob-mix" min="0" max="100" step="1" value="50">
             </div>
             <div class="knob">
-                <label for="knob-feedback">Feedback</label>
-                <input type="range" id="knob-feedback" min="0" max="100">
+                <label for="knob-rate">Rate</label>
+                <input type="range" id="knob-rate" min="0" max="100" step="1" value="50">
             </div>
-            <div class="knob">
-                <label for="knob-level">Level</label>
-                <input type="range" id="knob-level" min="0" max="100">
-            </div>
-        </div>
-        <div class="footswitch">
-            <button id="startButton">ON/OFF</button>
-            <button id="stopButton">STOP</button>
         </div>
         
-        <div class="led">
-            <div class="led-light"></div>
+        <!-- Pulsante ON/OFF -->
+        <div class="footswitch">
+            <button id="toggleChorus" aria-label="Accendi o spegni il chorus">ON/OFF</button>
         </div>
+        
+         <div class="block-3D" id="block-3D-chorus" ></div> 
     </div>
-    <script src="script.js"></script>
+
+    <div class="pedal" id="reverb-pedal">
+        <header class="pedal-top">
+            <h2>Reverb</h2>
+        </header>
+        
+        <!-- Blocco manopole -->
+        <div class="knobs">
+            <div class="knob">
+                <label for="knob-mix">Mix</label>
+                <input type="range" id="knob-mix" min="0" max="100" step="1" value="50">
+            </div>
+            <div class="knob">
+                <label for="knob-rate">Rate</label>
+                <input type="range" id="knob-rate" min="0" max="100" step="1" value="50">
+            </div>
+        </div>
+        
+        <!-- Pulsante ON/OFF -->
+        <div class="footswitch">
+            <button id="toggleChorus" aria-label="Accendi o spegni il chorus">ON/OFF</button>
+        </div>
+
+        <div class="block-3D" id="block-3D-reverb" ></div> 
+    </div>
+
+    <script src="script.js"></script> <!-- Link al file JS separato -->
 </body>
+
 </html>
