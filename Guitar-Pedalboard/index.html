@@ -28,7 +28,9 @@
         
         <!-- Pulsante ON/OFF -->
         <div class="footswitch">
-            <button id="toggleChorus" aria-label="Accendi o spegni il chorus">ON/OFF</button>
+            <button id="toggleChorus" onclick="toggleImage(event)">
+                <img src="img/OFF.png" alt="ON/OFF">
+            </button>
         </div>
         
          <div class="block-3D" id="block-3D-chorus" ></div> 
@@ -53,7 +55,9 @@
         
         <!-- Pulsante ON/OFF -->
         <div class="footswitch">
-            <button id="toggleChorus" aria-label="Accendi o spegni il chorus">ON/OFF</button>
+            <button id="toggleReverb" onclick="toggleImage(event)" >
+                <img src="img/OFF.png" alt="ON/OFF">
+            </button>
         </div>
 
         <div class="block-3D" id="block-3D-reverb" ></div> 
@@ -63,3 +67,24 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+  <!-- 
+<webaudio-knob id="Knob1" step="0.1" src="img/manopola.png" value="7" min="0" max="10" diameter="69" sprites="99" tooltip="Volume">
+    <div class="wac-body style-scope webaudio-knob" id="wac-body" touch-action="none">
+        <div id="wac-knob" touch-action="none" class="style-scope webaudio-knob" style="width: 69px; height: 69px; background: url(&quot;img/Prophet.png&quot;) 0px -3036px / 100% 10000%; transform: rotate(0deg);"></div>
+        <span id="wac-value-tip" class="style-scope webaudio-knob" style="display: none; opacity: 0;">
+            <span class="style-scope webaudio-knob">4.5</span>
+        </span>
+        <div id="wac-tooltip-box" class="style-scope webaudio-knob">
+            <span id="wac-tooltip-text" class="style-scope webaudio-knob">Volume</span>
+        </div>
+    </div>
+</webaudio-knob>
+-->
