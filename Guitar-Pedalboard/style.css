@@ -29,7 +29,7 @@ body {
     width: calc(100% + 40px); /* Aggiungo il padding orizzontale (20px per lato) */
     height: 100px;
     border-radius: 15px;
-    bottom: -30%;
+    bottom: -22%;
     left: -20px;
     z-index: -1;
 }
@@ -44,12 +44,24 @@ body {
 
 #chorus-pedal {
     background: linear-gradient(to bottom right, #78244a 0%, #6F0C38 50%);
-    width: 230px;  
+    width: 240px;  
 }
 
 #reverb-pedal {
     background: linear-gradient(to right, #ffc49a, #ffc165); 
 }
+
+.led {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: black;  /* LED spento */
+    margin-left: auto;
+    margin-right: 0;
+    display: block;
+}
+
+
 
 .pedal-top h2 {
     text-align: center;
@@ -76,6 +88,7 @@ body {
 /* Stile per ogni manopola e relativo valore */
 .knob-container {
     text-align: center;
+    margin: 0px 11px;
 }
 
 /* Stile per il valore della manopola */
@@ -100,17 +113,11 @@ body {
     transform: translateX(-50%);  /* Centra orizzontalmente */
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Etichetta sopra la manopola */
+.knob-label {
+    font-size: 14px;
+    
+    color: #1a2025;
+    margin-bottom: 10px;
+    display: block;
+}
