@@ -29,7 +29,7 @@ body {
     width: calc(100% + 40px); /* Aggiungo il padding orizzontale (20px per lato) */
     height: 100px;
     border-radius: 15px;
-    bottom: -33%;
+    bottom: -30%;
     left: -20px;
     z-index: -1;
 }
@@ -44,6 +44,7 @@ body {
 
 #chorus-pedal {
     background: linear-gradient(to bottom right, #78244a 0%, #6F0C38 50%);
+    width: 230px;  
 }
 
 #reverb-pedal {
@@ -61,38 +62,42 @@ body {
 }
 
 
-/* Stile per i pulsanti all'interno di .footswitch */
-.footswitch button {
-    background-color: transparent; /* Sfondo trasparente per mostrare solo l'immagine */
-    border: none; /* Rimuove i bordi del pulsante */
-    cursor: pointer; /* Cambia il cursore per indicare che è cliccabile */
-    padding: 0; /* Rimuove la spaziatura interna */
+/* Wrapper per le manopole, usa flexbox per centrarlo e disporre gli elementi verticalmente */
+.knob-container-wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row; /* Disporre le manopole verticalmente */
+    justify-content: space-between; /* Distanza tra le manopole */
+    align-items: center;  /* Centra le manopole orizzontalmente */
+    width: 100%; /* Occupare tutta la larghezza disponibile */
+    max-width: 600px; /* Limita la larghezza massima */
+    margin: 0 auto; /* Centra il contenitore orizzontalmente */
 }
 
-/* Stile per le immagini nei pulsanti */
-.footswitch button img {
-    width: 50px; /* Regola la dimensione dell'immagine */
-    height: auto; /* Mantiene le proporzioni dell'immagine */
-    transition: transform 0.2s ease; /* Aggiunge un effetto al passaggio del mouse */
+/* Stile per ogni manopola e relativo valore */
+.knob-container {
+    text-align: center;
 }
 
-/* Effetto hover per le immagini */
-.footswitch button img:hover {
-    transform: scale(1.1); /* Leggero ingrandimento al passaggio del mouse */
+/* Stile per il valore della manopola */
+.knob-value {
+    font-size: 12px; /* Impostiamo una dimensione abbastanza grande */
+    font-weight: bold; /* Grassetto per una lettura migliore */
+    color: #ffffff; /* Colore blu chiaro, puoi scegliere il tuo colore preferito */
+    margin-top: 10px; /* Distanza tra la manopola e il numero */
+    font-family: 'Roboto', sans-serif; /* Un font moderno e leggibile */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); /* Ombra per il testo, rende il numero più visibile */
+    padding: 5px 12px; /* Un po' di spazio interno per dare un effetto più "morbido" */
+    background-color: #000000; /* Colore di sfondo chiaro */
+    border-radius: 5px; /* Angoli arrotondati */
+    display: inline-block; /* Rende il numero un blocco inline, per centrarlo meglio */
+    text-align: center; /* Allinea il numero al centro */  
 }
 
-/* Stile per il footswitch con position: relative */
-.footswitch {
-    display: flex;
-    justify-content: center;  /* Centra orizzontalmente */
-    align-items: center;  /* Centra verticalmente */
-    position: relative;  /* Posiziona il footswitch relativo al contenitore .pedal */
-    bottom: -150px;  /* Posiziona il footswitch in basso nel pedale */
-    width: 100%;  /* Occupa tutta la larghezza del pedale */
-    padding: 0;  /* Rimuove eventuale padding interno */
+.button {
+    position: absolute;
+    bottom: 20px;  /* Distanza dal fondo */
+    left: 50%;
+    transform: translateX(-50%);  /* Centra orizzontalmente */
 }
 
 
@@ -109,20 +114,3 @@ body {
 
 
 
-
-
-.knobs {
-    display: flex;
-    justify-content: space-between;
-}
-
-.knob {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.knob input[type="range"] {
-    width: 100%;
-}

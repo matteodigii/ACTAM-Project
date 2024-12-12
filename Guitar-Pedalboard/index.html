@@ -14,24 +14,29 @@
             <h2>Chorus</h2>
         </header>
         
-        <!-- Blocco manopole -->
-        <div class="knobs">
-            <div class="knob">
-                <label for="knob-mix">Mix</label>
-                <input type="range" id="knob-mix" min="0" max="100" step="1" value="50">
-            </div>
-            <div class="knob">
-                <label for="knob-rate">Rate</label>
-                <input type="range" id="knob-rate" min="0" max="100" step="1" value="50">
-            </div>
+       
+        <!-- Contenitore per le manopole, usa flexbox per posizionarle orizzontalmente -->
+        <div class="knob-container-wrapper">
+             <!-- Manopola per il mix del chorus -->
+             <div class="knob-container">
+                <webaudio-knob id="Knob-mix-chorus" step="1" src="img/knob.png" value="100" min="0" max="100" diameter="64" sprites="100" tooltip="Mix"> </webaudio-knob>
+                <span id="Knob-mix-chorus-value" class="knob-value">100</span>
+           </div>
+
+             <!-- Manopola per il rate del chorus -->
+             <div class="knob-container">
+                 <webaudio-knob id="Knob-rate-chorus" step="1" src="img/knob.png" value="50" min="0" max="100" diameter="64" sprites="100" tooltip="Rate"> </webaudio-knob>
+                 <span id="Knob-rate-chorus-value" class="knob-value">50</span>
+             </div>
+
+              <!-- Manopola per il depth del chorus -->
+              <div class="knob-container">
+                <webaudio-knob id="Knob-depth-chorus" step="1" src="img/knob.png" value="50" min="0" max="100" diameter="64" sprites="100" tooltip="Depth"> </webaudio-knob>
+                <span id="Knob-depth-chorus-value" class="knob-value">50</span>
+           </div>
         </div>
-        
         <!-- Pulsante ON/OFF -->
-        <div class="footswitch">
-            <button id="toggleChorus" onclick="toggleImage(event)">
-                <img src="img/OFF.png" alt="ON/OFF">
-            </button>
-        </div>
+        <webaudio-switch id="button_chorus" class="button"  src="img/Button.png"  width="50" height="50"></webaudio-switch>
         
          <div class="block-3D" id="block-3D-chorus" ></div> 
     </div>
@@ -41,28 +46,28 @@
             <h2>Reverb</h2>
         </header>
         
-        <!-- Blocco manopole -->
-        <div class="knobs">
-            <div class="knob">
-                <label for="knob-mix">Mix</label>
-                <input type="range" id="knob-mix" min="0" max="100" step="1" value="50">
+         <!-- Contenitore per le manopole, usa flexbox per posizionarle orizzontalmente -->
+         <div class="knob-container-wrapper">
+            <!-- Manopola per il mix del chorus -->
+            <div class="knob-container">
+               <webaudio-knob id="Knob-mix-reverb" step="1" src="img/knob.png" value="50" min="0" max="100" diameter="64" sprites="100" tooltip="Mix"> </webaudio-knob>
+               <span id="Knob-mix-reverb-value" class="knob-value">50</span>
+          </div>
+
+            <!-- Manopola per il rate del chorus -->
+            <div class="knob-container">
+                <webaudio-knob id="Knob-rate-reverb" step="1" src="img/knob.png" value="50" min="0" max="100" diameter="64" sprites="100" tooltip="Rate"> </webaudio-knob>
+                <span id="Knob-rate-reverb-value" class="knob-value">50</span>
             </div>
-            <div class="knob">
-                <label for="knob-rate">Rate</label>
-                <input type="range" id="knob-rate" min="0" max="100" step="1" value="50">
-            </div>
-        </div>
-        
-        <!-- Pulsante ON/OFF -->
-        <div class="footswitch">
-            <button id="toggleReverb" onclick="toggleImage(event)" >
-                <img src="img/OFF.png" alt="ON/OFF">
-            </button>
-        </div>
+       </div>
+       <!-- Pulsante ON/OFF -->
+       <webaudio-switch id="button_reverb" class="button"  src="img/Button.png"  width="50" height="50"></webaudio-switch>
+    
 
         <div class="block-3D" id="block-3D-reverb" ></div> 
     </div>
 
+    <script src="webaudio-controls.js"></script>
     <script src="script.js"></script> <!-- Link al file JS separato -->
 </body>
 
