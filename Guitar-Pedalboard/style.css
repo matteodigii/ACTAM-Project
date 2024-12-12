@@ -13,25 +13,24 @@ body {
 .pedal {
    
     background-color: #333;  /* Colore di sfondo scuro predefinito se non specificato in un id */
-    padding: 10px;  /* Spaziatura interna */
+    padding: 20px;  /* Spaziatura interna */
     border-radius: 15px;  /* Bordo smussato */
-    padding: 20px;
     width: 170px;  
     height: 320px; 
     margin: 20px;  /* Aggiungi un margine per separare i pedali */
     box-shadow: 5px 30px 10px rgba(0, 0, 0, 0.3);  /* Ombra più discreta e naturale */
+    position: relative; /* Serve per il contesto di posizionamento assoluto del footswitch */
 }
 
 
 .block-3D {
-    background-color: #000;  /* Colore di sfondo nero */
+    background-color: #000;
     position: relative;
-    width: calc(100% + 40px);  /* Aggiungo il padding orizzontale (20px per lato) */
-    height: 100px;  /* Altezza fissa del blocco 3D */
-    border-radius: 15px;  /* Bordi smussati */
-    bottom: -30%;
+    width: calc(100% + 40px); /* Aggiungo il padding orizzontale (20px per lato) */
+    height: 100px;
+    border-radius: 15px;
+    bottom: -33%;
     left: -20px;
-    
     z-index: -1;
 }
 
@@ -61,6 +60,57 @@ body {
     margin-bottom: 20px; /* Distanza sotto */
 }
 
+
+/* Stile per i pulsanti all'interno di .footswitch */
+.footswitch button {
+    background-color: transparent; /* Sfondo trasparente per mostrare solo l'immagine */
+    border: none; /* Rimuove i bordi del pulsante */
+    cursor: pointer; /* Cambia il cursore per indicare che è cliccabile */
+    padding: 0; /* Rimuove la spaziatura interna */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Stile per le immagini nei pulsanti */
+.footswitch button img {
+    width: 50px; /* Regola la dimensione dell'immagine */
+    height: auto; /* Mantiene le proporzioni dell'immagine */
+    transition: transform 0.2s ease; /* Aggiunge un effetto al passaggio del mouse */
+}
+
+/* Effetto hover per le immagini */
+.footswitch button img:hover {
+    transform: scale(1.1); /* Leggero ingrandimento al passaggio del mouse */
+}
+
+/* Stile per il footswitch con position: relative */
+.footswitch {
+    display: flex;
+    justify-content: center;  /* Centra orizzontalmente */
+    align-items: center;  /* Centra verticalmente */
+    position: relative;  /* Posiziona il footswitch relativo al contenitore .pedal */
+    bottom: -150px;  /* Posiziona il footswitch in basso nel pedale */
+    width: 100%;  /* Occupa tutta la larghezza del pedale */
+    padding: 0;  /* Rimuove eventuale padding interno */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .knobs {
     display: flex;
     justify-content: space-between;
@@ -75,23 +125,4 @@ body {
 
 .knob input[type="range"] {
     width: 100%;
-}
-
-.footswitch {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-button {
-    background-color: #444;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #666;
 }
