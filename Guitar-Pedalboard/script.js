@@ -15,11 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-
-
-
-
-
     // Selezioniamo tutti i bottoni e i LED
     const buttons = document.querySelectorAll('.button');
     const leds = document.querySelectorAll('.led');

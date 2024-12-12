@@ -1,32 +1,31 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url('img/texture2.jpg'); /* Aggiungi il percorso dell'immagine di texture */
-    background-repeat: repeat; /* Ripete l'immagine per coprire tutto lo sfondo */
-    background-size: cover; /* Usa questa se vuoi che l'immagine si adatti alle dimensioni della finestra */
+    background-image: url('img/texture2.jpg'); /* Background image path */
+    background-repeat: repeat; /* Fills the whole background with the image */
+    background-size: cover; /* To adjust the size to the whole window */
     display: flex;
-    justify-content: center; /*gli elementi dentro il body saranno centrati e disposti orizzontalmente */
-    align-items: center; /* allineati verticalmente*/
+    justify-content: center; /* To place elements on the center */
+    align-items: center;
     height: 100vh;
     margin: 0;
 }
 
 .pedal {
-   
-    background-color: #333;  /* Colore di sfondo scuro predefinito se non specificato in un id */
-    padding: 20px;  /* Spaziatura interna */
-    border-radius: 15px;  /* Bordo smussato */
+    background-color: #333; 
+    padding: 20px; 
+    border-radius: 15px; 
     width: 170px;  
     height: 320px; 
-    margin: 20px;  /* Aggiungi un margine per separare i pedali */
-    box-shadow: 5px 30px 10px rgba(0, 0, 0, 0.3);  /* Ombra più discreta e naturale */
-    position: relative; /* Serve per il contesto di posizionamento assoluto del footswitch */
+    margin: 20px; 
+    box-shadow: 5px 30px 10px rgba(0, 0, 0, 0.3);  
+    position: relative; /* To correctly place the footswitch*/
 }
 
 
 .block-3D {
     background-color: #000;
     position: relative;
-    width: calc(100% + 40px); /* Aggiungo il padding orizzontale (20px per lato) */
+    width: calc(100% + 40px); /* Horizontal padding */
     height: 100px;
     border-radius: 15px;
     bottom: -22%;
@@ -35,88 +34,109 @@ body {
 }
 
 #block-3D-chorus {
-    background-color: #4C0827
+    background-color: #860941
 }
 
 #block-3D-reverb {
     background-color: #c67e46
 }
 
+#block-3D-overdrive {
+    background-color: #53b153
+}
+
+#block-3D-delay {
+    background-color: #0f9ba0
+}
+
+#block-3D-compressor {
+    background-color: #550868
+}
+
 #chorus-pedal {
-    background: linear-gradient(to bottom right, #78244a 0%, #6F0C38 50%);
-    width: 240px;  
+    background: linear-gradient(to right bottom, #890641,#d44c8a,#890641 );
+    width: 250px;  
 }
 
 #reverb-pedal {
-    background: linear-gradient(to right, #ffc49a, #ffc165); 
+    background: linear-gradient(to right bottom, #cd5f11, #e8b15f, #cd5f11); 
+}
+
+#overdrive-pedal {
+    background: linear-gradient(to right bottom, #13ad16, #a7f17b, #13ad16); 
+}
+
+#delay-pedal {
+    background: linear-gradient(to right bottom,#2f85af,#01fff2, #2f85af); 
+    width: 250px; 
+}
+
+#compressor-pedal {
+    background: linear-gradient(to right bottom,#550868,#c801ff, #550868); 
+    width: 250px; 
 }
 
 .led {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: black;  /* LED spento */
+    background-color: black;  /* Off LED color */
     margin-left: auto;
     margin-right: 0;
     display: block;
 }
 
-
-
 .pedal-top h2 {
     text-align: center;
-    color: #321122; /* Colore grigio scuro */
-    font-family: 'Oswald', sans-serif; /* Font con effetto corsivo elegante */
-    font-size: 25px; /* Dimensione grande per maggiore impatto */
-    font-weight: bold; /* Grassetto per evidenziare */
-    letter-spacing: 1px; /* Distanza tra le lettere per un effetto più elegante */
-    margin-bottom: 20px; /* Distanza sotto */
+    color: #321122; 
+    font-family: 'Oswald', sans-serif; 
+    font-size: 25px; 
+    font-weight: bold; 
+    letter-spacing: 1px; 
+    margin-bottom: 20px;
 }
 
-
-/* Wrapper per le manopole, usa flexbox per centrarlo e disporre gli elementi verticalmente */
+/* Wrapper for Knobs, flexbox to center it and dispose elements vertically */
 .knob-container-wrapper {
     display: flex;
-    flex-direction: row; /* Disporre le manopole verticalmente */
-    justify-content: space-between; /* Distanza tra le manopole */
-    align-items: center;  /* Centra le manopole orizzontalmente */
-    width: 100%; /* Occupare tutta la larghezza disponibile */
-    max-width: 600px; /* Limita la larghezza massima */
-    margin: 0 auto; /* Centra il contenitore orizzontalmente */
+    flex-direction: row; 
+    justify-content: space-between; 
+    align-items: center;  
+    width: 100%; 
+    max-width: 600px; 
+    margin: 0 auto; 
 }
 
-/* Stile per ogni manopola e relativo valore */
+/* Style for each knob and relative value */
 .knob-container {
     text-align: center;
     margin: 0px 11px;
 }
 
-/* Stile per il valore della manopola */
 .knob-value {
-    font-size: 12px; /* Impostiamo una dimensione abbastanza grande */
-    font-weight: bold; /* Grassetto per una lettura migliore */
-    color: #ffffff; /* Colore blu chiaro, puoi scegliere il tuo colore preferito */
-    margin-top: 10px; /* Distanza tra la manopola e il numero */
-    font-family: 'Roboto', sans-serif; /* Un font moderno e leggibile */
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); /* Ombra per il testo, rende il numero più visibile */
-    padding: 5px 12px; /* Un po' di spazio interno per dare un effetto più "morbido" */
-    background-color: #000000; /* Colore di sfondo chiaro */
-    border-radius: 5px; /* Angoli arrotondati */
-    display: inline-block; /* Rende il numero un blocco inline, per centrarlo meglio */
-    text-align: center; /* Allinea il numero al centro */  
+    font-size: 12px; 
+    font-weight: bold; 
+    color: #ffffff;
+    margin-top: 10px; 
+    font-family: 'Roboto', sans-serif; 
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); 
+    padding: 5px 12px; 
+    background-color: #000000; 
+    border-radius: 5px; 
+    display: inline-block; 
+    text-align: center; 
 }
 
 .button {
     position: absolute;
-    bottom: 20px;  /* Distanza dal fondo */
+    bottom: 20px; 
     left: 50%;
-    transform: translateX(-50%);  /* Centra orizzontalmente */
+    transform: translateX(-50%);  
 }
 
-/* Etichetta sopra la manopola */
+/* Etiquette over the knobs */
 .knob-label {
-    font-size: 14px;
-    
+    font-size: 14px;   
     color: #1a2025;
     margin-bottom: 10px;
     display: block;

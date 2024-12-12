@@ -1,83 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guitar Pedalboard</title>
     <link rel="stylesheet" href="style.css">
-   
-    
+      
 </head>
-<body>
-    <div class="pedal" id="chorus-pedal">
-        <!-- LED -->
-        <div id="led-chorus" class="led"></div>
 
+<body>   
+    <div class="pedal" id="compressor-pedal">
+        <!-- LED on/off pedal -->
+        <div id="led-compressor" class="led"></div>
+        <header class="pedal-top">
+        <h2>Compressor</h2>
+        </header>
+        <!-- Knobs container, we use flexbox to place them in a horizontal fashion -->
+        <div class="knob-container-wrapper">
+            <!-- Attack knob Compressor -->
+            <div class="knob-container">
+            <span class="knob-label">Attack</span> 
+            <webaudio-knob id="Knob-attack-compressor" step="1" src="img/knob.png" value="50" min="0" max="100" diameter="64" sprites="100"> </webaudio-knob>
+            <span id="Knob-attack-compressor-value" class="knob-value">50</span>
+            </div>
+
+            <!-- Threshold knob Compressor -->
+            <div class="knob-container">
+            <span class="knob-label">Threshold</span> 
+            <webaudio-knob id="Knob-threshold-compressor" step="1" src="img/knob.png" value="50" min="0" max="100" diameter="64" sprites="100"> </webaudio-knob>
+            <span id="Knob-threshold-compressor-value" class="knob-value">50</span>
+            </div>
+        </div>
+        <!-- ON/OFF switch -->
+        <webaudio-switch id="button_compressor" class="button" src="img/Button.png"  width="50" height="50"></webaudio-switch>
+        <div class="block-3D" id="block-3D-compressor"></div> 
+    </div>
+
+    <div class="pedal" id="overdrive-pedal">
+        <!-- LED on/off pedal -->
+        <div id="led-overdrive" class="led"></div>
+        <header class="pedal-top">
+            <h2>Overdrive</h2>
+        </header>
+        <!-- Knobs container, we use flexbox to place them in a horizontal fashion -->
+        <div class="knob-container-wrapper">
+            <!-- Drive knob Overdrive -->
+            <div class="knob-container">
+               <span class="knob-label">Drive</span> 
+               <webaudio-knob id="Knob-drive-overdrive" step="1" src="img/knob.png" value="50" min="0" max="100" diameter="64" sprites="100"> </webaudio-knob>
+               <span id="Knob-drive-overdrive-value" class="knob-value">50</span>
+            </div>
+
+            <!-- Tone knob Overdrive -->
+            <div class="knob-container">
+               <span class="knob-label">Tone</span> 
+               <webaudio-knob id="Knob-tone-overdrive" step="1" src="img/knob.png" value="50" min="0" max="100" diameter="64" sprites="100"> </webaudio-knob>
+               <span id="Knob-tone-overdrive-value" class="knob-value">50</span>
+            </div>
+        </div>
+        <!-- ON/OFF switch -->
+        <webaudio-switch id="button_overdrive" class="button" src="img/Button.png"  width="50" height="50"></webaudio-switch>
+        <div class="block-3D" id="block-3D-overdrive"></div> 
+    </div>
+
+    <div class="pedal" id="chorus-pedal">
+        <!-- LED on/off pedal -->
+        <div id="led-chorus" class="led"></div>
         <header class="pedal-top">
             <h2>Chorus</h2>
         </header>
-
-        <!-- Contenitore per le manopole, usa flexbox per posizionarle orizzontalmente -->
+        <!-- Knobs container, we use flexbox to place them in a horizontal fashion -->
         <div class="knob-container-wrapper">
-             <!-- Manopola per il mix del chorus -->
-             <div class="knob-container">
-                <span class="knob-label">mix</span> 
+            <!-- Mix knob Chorus -->
+            <div class="knob-container">
+                <span class="knob-label">Mix</span> 
                 <webaudio-knob id="Knob-mix-chorus" step="1" src="img/knob.png" value="100" min="0" max="100" diameter="64" sprites="100"> </webaudio-knob>
                 <span id="Knob-mix-chorus-value" class="knob-value">100</span>
-           </div>
+            </div>
 
-             <!-- Manopola per il rate del chorus -->
-             <div class="knob-container">
-                <span class="knob-label">rate</span> 
-                 <webaudio-knob id="Knob-rate-chorus" step="1" src="img/knob.png" value="50" min="0" max="100" diameter="64" sprites="100"> </webaudio-knob>
-                 <span id="Knob-rate-chorus-value" class="knob-value">50</span>
-             </div>
+            <!-- Rate knob Chorus -->
+            <div class="knob-container">
+                <span class="knob-label">Rate</span> 
+                <webaudio-knob id="Knob-rate-chorus" step="1" src="img/knob.png" value="50" min="0" max="100" diameter="64" sprites="100"> </webaudio-knob>
+                <span id="Knob-rate-chorus-value" class="knob-value">50</span>
+            </div>
 
-              <!-- Manopola per il depth del chorus -->
-              <div class="knob-container">
-                <span class="knob-label">depth</span> 
+            <!-- Depth knob Chorus -->
+            <div class="knob-container">
+                <span class="knob-label">Depth</span> 
                 <webaudio-knob id="Knob-depth-chorus" step="1" src="img/knob.png" value="50" min="0" max="100" diameter="64" sprites="100"> </webaudio-knob>
                 <span id="Knob-depth-chorus-value" class="knob-value">50</span>
-           </div>
+            </div>
         </div>
-        <!-- Pulsante ON/OFF -->
-        <webaudio-switch id="button_chorus" class="button"  src="img/Button.png"  width="50" height="50"></webaudio-switch>
-        
-         <div class="block-3D" id="block-3D-chorus" ></div> 
+        <!-- ON/OFF switch -->
+        <webaudio-switch id="button_chorus" class="button" src="img/Button.png"  width="50" height="50"></webaudio-switch>
+        <div class="block-3D" id="block-3D-chorus"></div> 
     </div>
 
     <div class="pedal" id="reverb-pedal">
-         <!-- LED -->
+        <!-- LED on/off pedal -->
         <div id="led-reverb" class="led"></div>
 
         <header class="pedal-top">
             <h2>Reverb</h2>
         </header>
         
-         <!-- Contenitore per le manopole, usa flexbox per posizionarle orizzontalmente -->
-         <div class="knob-container-wrapper">
-            <!-- Manopola per il dry-wet del chorus -->
+        <!-- Knobs container, we use flexbox to place them in a horizontal fashion -->
+        <div class="knob-container-wrapper">
+            <!-- Dry-wet knob Reverb -->
             <div class="knob-container">
-                <span class="knob-label">dry-wet</span> 
+               <span class="knob-label">Dry-wet</span> 
                <webaudio-knob id="Knob-dry-wet-reverb" step="1" src="img/knob.png" value="50" min="0" max="100" diameter="64" sprites="100"> </webaudio-knob>
                <span id="Knob-dry-wet-reverb-value" class="knob-value">50</span>
-          </div>
+            </div>
 
-            <!-- Manopola per il decay del chorus -->
+            <!-- Decay knob Reverb -->
             <div class="knob-container">
-                <span class="knob-label">decay</span> 
+                <span class="knob-label">Decay</span> 
                 <webaudio-knob id="Knob-decay-reverb" step="1" src="img/knob.png" value="50" min="0" max="100" diameter="64" sprites="100"> </webaudio-knob>
                 <span id="Knob-decay-reverb-value" class="knob-value">50</span>
             </div>
-       </div>
-       <!-- Pulsante ON/OFF -->
-       <webaudio-switch id="button_reverb" class="button"  src="img/Button.png"  width="50" height="50"></webaudio-switch>
-    
-        <div class="block-3D" id="block-3D-reverb" ></div> 
+        </div>
+        <!-- ON/OFF switch -->
+        <webaudio-switch id="button_reverb" class="button" src="img/Button.png"  width="50" height="50"></webaudio-switch>
+        <div class="block-3D" id="block-3D-reverb"></div> 
     </div>
 
-    <script src="webaudio-controls.js"></script>
-    <script src="script.js"></script> <!-- Link al file JS separato -->
+    <div class="pedal" id="delay-pedal">
+        <!-- LED on/off pedal -->
+        <div id="led-delay" class="led"></div>
+            <header class="pedal-top">
+                <h2>Delay</h2>
+            </header>
+
+        <!-- Knobs container, we use flexbox to place them in a horizontal fashion -->
+        <div class="knob-container-wrapper">
+            <!-- Mix knob Delay -->
+            <div class="knob-container">
+                <span class="knob-label">Mix</span> 
+                <webaudio-knob id="Knob-mix-delay" step="1" src="img/knob.png" value="100" min="0" max="100" diameter="64" sprites="100"> </webaudio-knob>
+                <span id="Knob-mix-delay-value" class="knob-value">100</span>
+            </div>
+
+            <!-- Rate knob Delay -->
+            <div class="knob-container">
+                <span class="knob-label">Feedback</span> 
+                <webaudio-knob id="Knob-feedback-delay" step="1" src="img/knob.png" value="50" min="0" max="100" diameter="64" sprites="100"> </webaudio-knob>
+                <span id="Knob-feedback-delay-value" class="knob-value">50</span>
+            </div>
+
+            <!-- Time knob Delay -->
+            <div class="knob-container">
+                <span class="knob-label">time</span> 
+                <webaudio-knob id="Knob-time-delay" step="1" src="img/knob.png" value="50" min="0" max="100" diameter="64" sprites="100"> </webaudio-knob>
+                <span id="Knob-time-delay-value" class="knob-value">50</span>
+            </div>
+        </div>
+        <!-- ON/OFF switch -->
+        <webaudio-switch id="button_delay" class="button" src="img/Button.png"  width="50" height="50"></webaudio-switch>
+        <div class="block-3D" id="block-3D-delay"></div> 
+    </div>
+
+    <script src="webaudio-controls.js"></script> <!-- JS File to control knobs -->
+    <script src="script.js"></script> <!-- Link to JS main file -->
 </body>
 
 </html>
