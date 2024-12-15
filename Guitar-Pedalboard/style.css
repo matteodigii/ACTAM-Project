@@ -1,39 +1,88 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url('img/texture2.jpg'); /* Background image path */
-    background-repeat: repeat; /* Fills the whole background with the image */
-    background-size: cover; /* To adjust the size to the whole window */
+    background-image: url('img/texture2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
     display: flex;
-    justify-content: center; /* To place elements on the center */
+    justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
 }
+
+
+/* Contenitore principale per il bottone e i pedali */
+#main-container {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+
+/* Contenitore per la prima riga (es. bottone) */
+#top-row {
+    display: flex; /* Imposta il contenitore come flexbox */
+    justify-content: center; /* Centra gli elementi orizzontalmente */
+    align-items: center; /* Centra gli elementi verticalmente */
+    margin-bottom: 10px; /* Puoi anche rimuovere il margine tra le righe */
+    margin-top: 50px; 
+}
+
+
+/* Contenitore per la seconda riga (pedali) */
+#bottom-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 0px;
+}
+
+.pedal-container {
+    display: flex;
+    flex-direction: column; /* Disporre gli elementi figli in colonna */
+    width: auto; /* Impostare la larghezza automatica in base ai figli */
+    margin: 20px; /* Centrare il contenitore se necessario */
+    position: relative;
+    align-items: center;
+    z-index: 1; /* Evita sovrapposizioni inaspettate */
+}
+
 
 .pedal {
     background-color: #333; 
     padding: 20px; 
     border-radius: 15px; 
-    width: 170px;  
     height: 320px; 
-    margin: 20px; 
+    width: 160px;
     box-shadow: 5px 30px 10px rgba(0, 0, 0, 0.3);  
-    position: relative; /* To correctly place the footswitch*/
+    cursor: grab;
+    position: relative; 
+    z-index: 0;
 }
 
+/* Classe per la copia dell'elemento durante il drag */
+.ghostClass {
+    opacity: 0;  /* Rende l'elemento completamente invisibile */
+}
 
 .block-3D {
     background-color: #000;
-    position: relative;
-    width: calc(100% + 40px); /* Horizontal padding */
+    position: absolute;
+    width: 200px;
     height: 100px;
     border-radius: 15px;
-    bottom: -22%;
-    left: -20px;
+    bottom: -30px;
     z-index: -1;
+    pointer-events: none;
 }
 
+
 #block-3D-chorus {
+    width: 280px; /* I pedali occupano il 20% della larghezza della pagina */
     background-color: #860941
 }
 
@@ -46,16 +95,18 @@ body {
 }
 
 #block-3D-delay {
+    width: 280px;
     background-color: #0f9ba0
 }
 
 #block-3D-compressor {
+    width: 280px;
     background-color: #550868
 }
 
 #chorus-pedal {
     background: linear-gradient(to right bottom, #890641,#d44c8a,#890641 );
-    width: 250px;  
+    width: 240px; 
 }
 
 #reverb-pedal {
@@ -68,12 +119,12 @@ body {
 
 #delay-pedal {
     background: linear-gradient(to right bottom,#2f85af,#01fff2, #2f85af); 
-    width: 250px; 
+    width: 240px; 
 }
 
 #compressor-pedal {
     background: linear-gradient(to right bottom,#550868,#c801ff, #550868); 
-    width: 250px; 
+    width: 240px; 
 }
 
 .led {
@@ -100,7 +151,7 @@ body {
 .knob-container-wrapper {
     display: flex;
     flex-direction: row; 
-    justify-content: space-between; 
+    justify-content: center ;
     align-items: center;  
     width: 100%; 
     max-width: 600px; 
@@ -112,6 +163,7 @@ body {
     text-align: center;
     margin: 0px 11px;
 }
+
 
 .knob-value {
     font-size: 12px; 
@@ -140,4 +192,47 @@ body {
     color: #1a2025;
     margin-bottom: 10px;
     display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Stile del bottone Play */
+#play-audio {
+    background-color: #53b153; /* Colore verde simile agli altri pedali */
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 30px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease; /* Aggiunge una transizione morbida */
+}
+
+/* Effetto hover */
+#play-audio:hover {
+    background-color: #45a045; /* Colore più scuro quando si passa sopra il bottone */
+    box-shadow: 5px 15px 25px rgba(0, 0, 0, 0.4); /* Aumenta la profondità dell'ombra */
+    transform: translateY(-2px); /* Solleva il bottone quando si passa sopra */
 }
