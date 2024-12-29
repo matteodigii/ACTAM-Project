@@ -349,7 +349,7 @@ if(window.customElements){
     }
   }
 
-try{
+  try{
     customElements.define("webaudio-knob", class WebAudioKnob extends WebAudioControlsWidget {
     constructor(){
       super();
@@ -1154,6 +1154,7 @@ try{
       else
         root=this;
       root.innerHTML=
+
 `<style>
 ${this.basestyle}
 :host{
