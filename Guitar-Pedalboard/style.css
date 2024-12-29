@@ -24,6 +24,7 @@ body {
 /* Contenitore per la prima riga (es. bottone) */
 #top-row {
     display: flex; /* Imposta il contenitore come flexbox */
+    flex-direction: column; /* Disposizione verticale */
     justify-content: center; /* Centra gli elementi orizzontalmente */
     align-items: center; /* Centra gli elementi verticalmente */
     margin-bottom: 10px; /* Puoi anche rimuovere il margine tra le righe */
@@ -80,52 +81,91 @@ body {
     pointer-events: none;
 }
 
-
-#block-3D-chorus {
-    width: 280px; /* I pedali occupano il 20% della larghezza della pagina */
-    background-color: #860941
-}
-
-#block-3D-reverb {
-    background-color: #c67e46
-}
-
-#block-3D-overdrive {
-    background-color: #53b153
-}
-
-#block-3D-delay {
-    width: 280px;
-    background-color: #0f9ba0
-}
-
-#block-3D-compressor {
-    width: 280px;
-    background-color: #550868
-}
-
-#chorus-pedal {
-    background: linear-gradient(to right bottom, #890641,#d44c8a,#890641 );
-    width: 240px; 
-}
-
-#reverb-pedal {
-    background: linear-gradient(to right bottom, #cd5f11, #e8b15f, #cd5f11); 
-}
-
-#overdrive-pedal {
-    background: linear-gradient(to right bottom, #13ad16, #a7f17b, #13ad16); 
-}
-
-#delay-pedal {
-    background: linear-gradient(to right bottom,#2f85af,#01fff2, #2f85af); 
-    width: 240px; 
+.block-side {
+    background-color: #000;
+    position: absolute;
+    width: 220px;
+    height: 50px;
+    border-radius: 15px;
+    bottom: 200px;
+    z-index: -2;
+    pointer-events: none;
 }
 
 #compressor-pedal {
     background: linear-gradient(to right bottom,#550868,#c801ff, #550868); 
     width: 240px; 
 }
+#block-3D-compressor {
+    width: 280px;
+    background-color: #550868
+}
+#block-side-compressor {
+    width: 300px; /* I pedali occupano il 20% della larghezza della pagina */
+    background-color: #2d0836
+}
+
+
+
+#overdrive-pedal {
+    background: linear-gradient(to right bottom, #13ad16, #a7f17b, #13ad16); 
+}
+#block-3D-overdrive {
+    background-color: #53b153
+}
+#block-side-overdrive {
+    background-color: #092909
+}
+
+
+
+#chorus-pedal {
+    background: linear-gradient(to right bottom, #890641,#d44c8a,#890641 );
+    width: 240px; 
+}
+#block-3D-chorus {
+    width: 280px; /* I pedali occupano il 20% della larghezza della pagina */
+    background-color: #860941
+}
+#block-side-chorus {
+    width: 300px;
+    background-color: #39091f
+}
+
+
+
+#reverb-pedal {
+    background: linear-gradient(to right bottom, #cd5f11, #e8b15f, #cd5f11); 
+}
+#block-3D-reverb {
+    background-color: #c67e46
+}
+#block-side-reverb {
+    background-color: #482c14
+}
+
+
+
+#delay-pedal {
+    background: linear-gradient(to right bottom,#2f85af,#01fff2, #2f85af); 
+    width: 240px; 
+}
+#block-3D-delay {
+    width: 280px;
+    background-color: #0f9ba0
+}
+#block-side-delay {
+    width: 300px;
+    background-color: #082c2d
+}
+
+
+
+
+
+
+
+
 
 .led {
     width: 10px;
@@ -135,6 +175,16 @@ body {
     margin-left: auto;
     margin-right: 0;
     display: block;
+}
+
+.led-on {
+    background-color: white;
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+}
+
+.led-off {
+    background-color: black;
+    box-shadow: none;
 }
 
 .pedal-top h2 {
@@ -195,44 +245,85 @@ body {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Stile del bottone Play */
-#play-audio {
-    background-color: #53b153; /* Colore verde simile agli altri pedali */
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 15px 30px;
-    border-radius: 10px;
-    border: none;
-    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    transition: all 0.3s ease; /* Aggiunge una transizione morbida */
+/* Stile del bottone Reset */
+#reset-pedals {
+    background-color: #000000; /* Colore nero */
+    color: white; /* Testo bianco */
+    font-size: 20px; /* Stessa dimensione del bottone Play */
+    font-weight: bold; /* Testo in grassetto */
+    padding: 15px 30px; /* Stessa dimensione del bottone Play */
+    border-radius: 10px; /* Bordo arrotondato */
+    border: none; /* Nessun bordo */
+    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.3); /* Ombra simile al bottone Play */
+    cursor: pointer; /* Puntatore a forma di mano */
+    transition: all 0.3s ease; /* Transizione morbida */
 }
 
 /* Effetto hover */
-#play-audio:hover {
-    background-color: #45a045; /* Colore più scuro quando si passa sopra il bottone */
+#reset-pedals:hover {
+    background-color: #333333; /* Colore grigio scuro per l'hover */
     box-shadow: 5px 15px 25px rgba(0, 0, 0, 0.4); /* Aumenta la profondità dell'ombra */
     transform: translateY(-2px); /* Solleva il bottone quando si passa sopra */
 }
+
+
+
+
+/* Contenitore principale per i preset */
+#preset-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Allinea gli elementi a sinistra */
+    gap: 15px; /* Spaziatura maggiore tra gli elementi */
+    margin: 20px 0;
+    padding: 10px; /* Aggiunge un po' di spazio interno */
+    background-color: #f9f9f9; /* Colore di sfondo chiaro */
+    border: 1px solid #ddd; /* Bordo sottile */
+    border-radius: 10px; /* Bordo arrotondato */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+}
+
+/* Menu a tendina dei preset */
+#preset-menu {
+    font-size: 18px;
+    padding: 10px 15px; /* Spaziatura migliorata */
+    border-radius: 8px; /* Bordo arrotondato maggiore */
+    border: 1px solid #ccc;
+    background-color: #fff; /* Sfondo bianco per contrasto */
+    color: #333; /* Testo scuro per leggibilità */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Effetto di profondità interno */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transizione per il focus */
+}
+
+#preset-menu:focus {
+    border-color: #007bff; /* Colore del bordo al focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Glow al focus */
+}
+
+/* Bottone per salvare il preset */
+#save-preset {
+    background-color: #444; /* Colore scuro di base */
+    color: white; /* Testo bianco */
+    font-size: 16px;
+    padding: 10px 20px; /* Aumenta dimensione del bottone */
+    border-radius: 8px; /* Bordo arrotondato maggiore */
+    border: none; /* Nessun bordo */
+    cursor: pointer; /* Puntatore a mano */
+    transition: background-color 0.3s, transform 0.2s; /* Transizioni per hover e click */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Ombra leggera */
+}
+
+#save-preset:hover {
+    background-color: #555; /* Colore più chiaro al passaggio del mouse */
+    transform: translateY(-2px); /* Solleva il bottone */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Ombra più profonda */
+}
+
+#save-preset:active {
+    background-color: #333; /* Colore più scuro quando cliccato */
+    transform: translateY(0); /* Ritorna alla posizione originale */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Riduce l'ombra */
+}
+
+
+

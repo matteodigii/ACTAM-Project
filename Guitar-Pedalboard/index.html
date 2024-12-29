@@ -8,6 +8,9 @@
     <title>Guitar Pedalboard</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+   <!--  <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js"></script> -->
+   <!--  <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js"></script> -->
+
 
 </head>
 
@@ -17,7 +20,17 @@
     <div id="main-container">
         <!-- Prima riga: Contiene il bottone Play -->
         <div id="top-row">
-            <button id="play-audio" onclick="playAudio()">Play</button>
+            <div id="preset-container">
+                <label for="preset-menu">Presets:</label>
+                <select id="preset-menu" onchange="applyPreset()">
+                    <option value="" disabled selected>Select a preset</option>
+                    <option value="preset1">preset1</option>
+                    <option value="preset2">preset2</option>
+                </select>
+                <button id="save-preset" onclick="savePreset()">Save Current</button>
+            </div>
+            <button id="reset-pedals" class="button-top-row">Reset</button> <!-- Pulsante di reset -->
+
         </div>
 
 
@@ -35,9 +48,9 @@
                         <!-- Attack knob Compressor -->
                         <div class="knob-container">
                             <span class="knob-label">Attack</span>
-                            <webaudio-knob id="Knob-attack-compressor" step="1" src="img/knob.png" value="50" min="0"
+                            <webaudio-knob id="Knob-attack-compressor" step="1" src="img/knob.png" value="70" min="0"
                                 max="100" diameter="58" sprites="100"> </webaudio-knob>
-                            <span id="Knob-attack-compressor-value" class="knob-value">50</span>
+                            <span id="Knob-attack-compressor-value" class="knob-value">70</span>
                         </div>
 
                         <!-- Release knob Compressor -->
@@ -57,11 +70,12 @@
                         </div>
                     </div>
                     <!-- ON/OFF switch -->
-                    <webaudio-switch id="button_compressor" class="button" src="img/Button.png" width="50"
+                    <webaudio-switch id="button_compressor" class="button" src="img/Button.png" value="0" width="50"
                         height="50"></webaudio-switch>
 
                 </div>
                 <div class="block-3D" id="block-3D-compressor"></div>
+                <div class="block-side" id="block-side-compressor"></div>
             </div>
 
             <div class="pedal-container" id="overdrive-pedal-container">
@@ -90,10 +104,11 @@
                         </div>
                     </div>
                     <!-- ON/OFF switch -->
-                    <webaudio-switch id="button_overdrive" class="button" src="img/Button.png" width="50"
+                    <webaudio-switch id="button_overdrive" class="button" src="img/Button.png" value="0" width="50"
                         height="50"></webaudio-switch>
                 </div>
                 <div class="block-3D" id="block-3D-overdrive"></div>
+                <div class="block-side" id="block-side-overdrive"></div>
             </div>
 
             <div class="pedal-container" id="chorus-pedal-container">
@@ -130,10 +145,11 @@
                         </div>
                     </div>
                     <!-- ON/OFF switch -->
-                    <webaudio-switch id="button_chorus" class="button" src="img/Button.png" width="50"
+                    <webaudio-switch id="button_chorus" class="button" src="img/Button.png" value="0" width="50"
                         height="50"></webaudio-switch>
                 </div>
                 <div class="block-3D" id="block-3D-chorus"></div>
+                <div class="block-side" id="block-side-chorus"></div>
             </div>
 
             <div class="pedal-container" id="reverb-pedal-container">
@@ -150,9 +166,9 @@
                         <!-- Dry-wet knob Reverb -->
                         <div class="knob-container">
                             <span class="knob-label">Dry-wet</span>
-                            <webaudio-knob id="Knob-dry-wet-reverb" step="1" src="img/knob.png" value="50" min="0"
+                            <webaudio-knob id="Knob-dryWet-reverb" step="1" src="img/knob.png" value="50" min="0"
                                 max="100" diameter="58" sprites="100"> </webaudio-knob>
-                            <span id="Knob-dry-wet-reverb-value" class="knob-value">50</span>
+                            <span id="Knob-dryWet-reverb-value" class="knob-value">50</span>
                         </div>
 
                         <!-- Decay knob Reverb -->
@@ -164,10 +180,11 @@
                         </div>
                     </div>
                     <!-- ON/OFF switch -->
-                    <webaudio-switch id="button_reverb" class="button" src="img/Button.png" width="50"
+                    <webaudio-switch id="button_reverb" class="button" src="img/Button.png" value="0" width="50"
                         height="50"></webaudio-switch>
                 </div>
                 <div class="block-3D" id="block-3D-reverb"></div>
+                <div class="block-side" id="block-side-reverb"></div>
             </div>
 
             <div class="pedal-container" id="delay-pedal-container">
@@ -205,10 +222,11 @@
                         </div>
                     </div>
                     <!-- ON/OFF switch -->
-                    <webaudio-switch id="button_delay" class="button" src="img/Button.png" width="50"
+                    <webaudio-switch id="button_delay" class="button" src="img/Button.png" value="0" width="50"
                         height="50"></webaudio-switch>
                 </div>
                 <div class="block-3D" id="block-3D-delay"></div>
+                <div class="block-side" id="block-side-delay"></div>
             </div>
         </div>
 
@@ -216,8 +234,8 @@
         <ul id="pedal-sequence"></ul>
 
         <script src="webaudio-controls.js"></script> <!-- JS File to control knobs -->
-        <script src="script.js"></script> <!-- Link to JS main file -->
-       <!-- <script src="sposta.js"></script> <!-- Link to JS main file -->
+        <script src="script-motion.js"></script> <!-- Link to JS main file -->
+        <script src="script-preset.js"></script> <!-- Link to JS main file -->
 </body>
 
 </html>
