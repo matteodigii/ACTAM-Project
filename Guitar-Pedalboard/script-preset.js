@@ -1,26 +1,22 @@
-
-
-const pedalsContainer = document.getElementById('bottom-row'); // Contenitore dei pedali
-const pedalSequenceList = document.getElementById('pedal-sequence'); // Elenco per visualizzare l'ordine
+// Preset Script
+const pedalsContainer = document.getElementById('bottom-row'); // Pedals Container
+const pedalSequenceList = document.getElementById('pedal-sequence'); // List to visualize the order
 const bottomRow = document.getElementById('bottom-row');
 const presetMenu = document.getElementById('preset-menu');
 const buttons = document.querySelectorAll('.button');
 
-// Funzione per aggiornare l'ordine dei pedali
+// Function to update pedals order
 function updatePedalSequence() {
-    const pedals = pedalsContainer.children; // Ottieni tutti i pedali
-    pedalSequenceList.innerHTML = ''; // Pulisce la lista esistente
+    const pedals = pedalsContainer.children; // Acquire all pedals
+    pedalSequenceList.innerHTML = ''; // Clear existing list
     Array.from(pedals).forEach(pedal => {
         const listItem = document.createElement('li');
-        listItem.textContent = pedal.querySelector('header h2').textContent; // Nome del pedale
-        pedalSequenceList.appendChild(listItem); // Aggiungi alla lista
+        listItem.textContent = pedal.querySelector('header h2').textContent; // Pedal's name 
+        pedalSequenceList.appendChild(listItem); // Add to list
     });
 }
 
-
-
-
-
+// Default Presets, included in the WebApp
 const defaultPresets = {
     preset1: {
         order: ['compressor-pedal-container', 'overdrive-pedal-container', 'chorus-pedal-container', 'reverb-pedal-container', 'delay-pedal-container'],
@@ -45,13 +41,10 @@ const defaultPresets = {
     }
 };
 
-
-
-
-// Carica i preset salvati dall'utente da localStorage
+// Load presets saved by the user in localStorage
 const userPresets = JSON.parse(localStorage.getItem('userPresets')) || {};
 
-// Applica un preset selezionato
+// Apply selected preset
 function applyPreset() {
     const selectedPreset = presetMenu.value;
     const presets = { ...defaultPresets, ...userPresets };
@@ -59,14 +52,14 @@ function applyPreset() {
     if (presets[selectedPreset]) {
         const { order, values } = presets[selectedPreset];
 
-        // Cambia l'ordine dei pedali nel DOM
+        // Change pedals order in DOM
         updatePedalOrder(order);
 
-        // Imposta i valori dei knob per ogni pedale
+        // Set knob value for each pedal
         updatePedalSettings(values);
     }
 
-    updatePedalSequence();  // Mantieni l'aggiornamento della sequenza dei pedali
+    updatePedalSequence();  // Keep updated the pedal sequence
 }
 
 function updatePedalOrder(order) {
@@ -80,7 +73,7 @@ function updatePedalSettings(values) {
     Object.entries(values).forEach(([pedal, knobs]) => {
         const pedalContainer = document.getElementById(`${pedal}-pedal-container`);
         const led = document.getElementById(`led-${pedal}`);
-        const button = document.getElementById(`button_${pedal}`); // Trova il bottone corrispondente
+        const button = document.getElementById(`button_${pedal}`); // Find the corresponding button
         Object.entries(knobs).forEach(([knob, value]) => {
             updateKnob(knob, pedal, value);
         });
@@ -98,86 +91,81 @@ function updateKnob(knob, pedal, value) {
     }
 }
 
-
 function updatePedalState(pedalContainer, led, button, isOn) {
     if (pedalContainer) {
         if (isOn) {
             led.classList.add('led-on');
             led.classList.remove('led-off');
-            button.value = 1; // Imposta il valore del bottone a 1
-            console.log(`Bottone ${button.id} impostato su 1`); // Log per verificare
+            button.value = 1; // Set button value to 1
+            console.log(`Bottone ${button.id} impostato su 1`); // Log to verify
         } else {
             led.classList.remove('led-on');
             led.classList.add('led-off');
-            button.value = 0; // Imposta il valore del bottone a 0
-            console.log(`Bottone ${button.id} impostato su 0`); // Log per verificare
+            button.value = 0; // Set button value to 0
+            console.log(`Bottone ${button.id} impostato su 0`); // Log to verify
         }
     }
 }
 
-
-
-
-
-
+// Save Preset Function
 function savePreset() {
     const newPresetName = prompt("Inserisci il nome del nuovo preset:");
-    // Verifica se esiste già un preset con lo stesso nome nei userPresets o defaultPresets
+    // Verify if it already exists a preset with the same name in userPresets or defaultPresets
     if (userPresets[newPresetName] || defaultPresets[newPresetName]) {
         if (confirm(`Il preset "${newPresetName}" esiste già. Vuoi sostituirlo?`)) {
-            // Se esiste già nel userPresets, sostituiscilo
+            // If yes (in userPresets), replace it
             if (userPresets[newPresetName]) {
                 userPresets[newPresetName] = createPresetData();
             } else {
-                // Se esiste nei defaultPresets, aggiungilo a userPresets
+                // If yes (in defaultPresets), add it to userPresets
                 userPresets[newPresetName] = defaultPresets[newPresetName];
             }
         } else {
-            // Se l'utente non vuole sostituirlo, esci dalla funzione
+            // If the user does not wish to replace it, exit the function
             return;
         }
     } else {
-        // Se il preset non esiste, crealo normalmente
+        // If not, create it normally
         userPresets[newPresetName] = createPresetData();
     }
 
-    // Salva il preset nell'oggetto userPresets
+    // Save the preset in the object userPresets
     localStorage.setItem('userPresets', JSON.stringify(userPresets)); // Aggiorna localStorage
 
-    // Aggiorna il menu dei preset
+    // Update preset menu
     updatePresetMenu(newPresetName);
 
     alert(`Preset "${newPresetName}" salvato con successo!`);
 }
 
-// Funzione per creare i dati del preset (ordine dei pedali e valori dei knob)
+// Create Preset Data Function (pedals order and knobs value)
 function createPresetData() {
-    const order = Array.from(pedalsContainer.children).map(pedal => pedal.id); // Ordine dei pedali
+    const order = Array.from(pedalsContainer.children).map(pedal => pedal.id); // Pedals order
 
     const values = {};
     order.forEach(pedalId => {
-        const pedal = pedalId.replace('-pedal-container', ''); // Nome del pedale
-        const knobs = document.querySelectorAll(`#${pedalId} webaudio-knob`); // Recupera tutti gli elementi webaudio-knob
+        const pedal = pedalId.replace('-pedal-container', ''); // Pedal name
+        const knobs = document.querySelectorAll(`#${pedalId} webaudio-knob`); // Get all webaudio-knob elements
         const button = document.getElementById(`button_${pedal}`);
         const isOn = button.value == 1;
 
         values[pedal] = {};
 
-        // Aggiungi i valori dei knob
+        // Add knob values
         knobs.forEach(knob => {
-            const knobName = knob.id.replace(`Knob-`, '').replace(`-${pedal}`, ''); // Nome del knob
-            values[pedal][knobName] = parseInt(knob.value, 10); // Valore del knob
+            const knobName = knob.id.replace(`Knob-`, '').replace(`-${pedal}`, ''); // Knob name
+            values[pedal][knobName] = parseInt(knob.value, 10); // Knob value
         });
 
-        values[pedal].isOn = isOn; // Stato on/off
+        values[pedal].isOn = isOn; // On/Off status
     });
 
     return { order, values };
 }
 
-// Funzione per aggiornare il menu dei preset
+// Update Preset Menu Function
 function updatePresetMenu(newPresetName) {
-    // Controlla se l'option esiste già
+    // Check if the option already exists
     let optionExists = false;
     Array.from(presetMenu.options).forEach(option => {
         if (option.value === newPresetName) {
@@ -185,7 +173,7 @@ function updatePresetMenu(newPresetName) {
         }
     });
 
-    // Se non esiste, aggiungi una nuova option
+    // If not, add a new one
     if (!optionExists) {
         const newOption = document.createElement('option');
         newOption.value = newPresetName;
@@ -193,12 +181,11 @@ function updatePresetMenu(newPresetName) {
         presetMenu.appendChild(newOption);
     }
 
-    // Seleziona l'option appena creata
+    // Select the newly created option
     presetMenu.value = newPresetName;
 }
 
-
-// Funzione per caricare i preset salvati dall'utente da localStorage e popolare il menu
+// Loading user presets from localStorage and populating the menu Function
 function initializePresetMenu() {
     const savedUserPresets = JSON.parse(localStorage.getItem('userPresets')) || {};
     Object.keys(savedUserPresets).forEach(presetName => {
@@ -210,5 +197,5 @@ function initializePresetMenu() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    initializePresetMenu(); // Carica i preset salvati
+    initializePresetMenu(); // Load saved presets
 });

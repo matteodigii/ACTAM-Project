@@ -1,33 +1,30 @@
-
-
+// Motion script
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Funzione per aggiornare il valore della manopola
+    // To adjust knob values
     function updateKnobValue(knob, valueDisplay) {
         knob.addEventListener('input', function () {
-            // Aggiorna il valore visualizzato nel <span>
+            // Update visualized value in <span>
             valueDisplay.textContent = Math.round(knob.value);
         });
     }
 
-    // Seleziona tutte le manopole e i rispettivi display
+    // Select all knobs and their display
     const knobs = document.querySelectorAll('webaudio-knob');
     knobs.forEach(function (knob) {
         const valueDisplay = knob.nextElementSibling;
         updateKnobValue(knob, valueDisplay);
     });
 
-
-    // Selezioniamo tutti i bottoni e i LED
+    // Select all buttons and LEDs
     const buttons = document.querySelectorAll('.button');
     const leds = document.querySelectorAll('.led');
 
-
     buttons.forEach(function (button, index) {
-        // Ogni pedale avrà il suo LED corrispondente
+        // Each pedal will have its corresponding LED
         const led = leds[index];
 
-        // Funzione per aggiornare lo stato del LED in base al valore del bottone
+        // Function to adjourn LED status focusing on button value
         function updateLedState() {
             if (button.value == 1) {
                 led.classList.add('led-on');
@@ -38,86 +35,77 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
-        // Imposta lo stato iniziale del LED
+        // Initialize LED status
         updateLedState();
 
-        // Aggiungiamo l'evento al bottone per alternare il valore e aggiornare lo stato del LED
+        // Add the click event to the button an update LED status
         button.addEventListener('click', function () {
 
-            // Aggiorna lo stato del LED
+            // Update LED Status
             updateLedState();
         });
     });
 
+    const pedalsContainer = document.getElementById('bottom-row'); // Pedals container
+    const pedalSequenceList = document.getElementById('pedal-sequence'); // List to visualize the order
 
-
-
-
-    const pedalsContainer = document.getElementById('bottom-row'); // Contenitore dei pedali
-    const pedalSequenceList = document.getElementById('pedal-sequence'); // Elenco per visualizzare l'ordine
-
-    // Funzione per aggiornare l'ordine dei pedali
+    // Function to update pedals' order 
     function updatePedalSequence() {
-        const pedals = pedalsContainer.children; // Ottieni tutti i pedali
-        pedalSequenceList.innerHTML = ''; // Pulisce la lista esistente
+        const pedals = pedalsContainer.children; // Acquire all pedals
+        pedalSequenceList.innerHTML = ''; // Clean the existing list
         Array.from(pedals).forEach(pedal => {
             const listItem = document.createElement('li');
-            listItem.textContent = pedal.querySelector('header h2').textContent; // Nome del pedale
-            pedalSequenceList.appendChild(listItem); // Aggiungi alla lista
+            listItem.textContent = pedal.querySelector('header h2').textContent; // Pedal name
+            pedalSequenceList.appendChild(listItem); // Add to the list
         });
     }
 
-    // Aggiorna la sequenza all'inizio
+    // Update sequence
     updatePedalSequence();
 
-    // Inizializza SortableJS sul contenitore dei pedali
+    // Initialize SortableJS on the pedals container
     new Sortable(pedalsContainer, {
-        animation: 250, // Aggiunge un'animazione fluida
-        ghostClass: 'ghostClass', // Aggiungi questa classe durante il drag per rendere l'elemento invisibile
+        animation: 250, // Smooth animation
+        ghostClass: 'ghostClass', // Add this class during drag to make the element invisible
         onEnd: function (evt) {
-            // Quando l'utente termina il drag-and-drop, aggiorniamo l'ordine
+            // When the user stops the drag-and-drop, update the order
             updatePedalSequence();
         }
     });
 
-
-
-
     //RESET
 
-
-    // Memorizza i valori iniziali dei knob per fare il reset
+    // Memorize initial values of the knobs to do the reset
     const initialKnobValues = {};
     const presetMenu = document.getElementById('preset-menu');
 
-    // Seleziona tutte le manopole e i rispettivi display
+    // Select all knobs and their display
     const allKnobs = document.querySelectorAll('webaudio-knob');
     allKnobs.forEach(function (knobElement) {
-        // Memorizza il valore iniziale di ogni manopola
+        // Memorize initial value of each knob 
         initialKnobValues[knobElement.id] = knobElement.value;
     });
 
-
-    // Funzione di reset
+    // Reset function
     function resetPedalOrder(originalOrder) {
         originalOrder.forEach(function (id) {
             const pedalContainer = document.getElementById(id);
-            pedalsContainer.appendChild(pedalContainer); // Ripristina ogni pedale all'ordine originale
+            pedalsContainer.appendChild(pedalContainer); // Bring back all pedals to the original order
         });
     }
 
     function resetKnobValues(allKnobs, initialKnobValues) {
         allKnobs.forEach(function (knobElement) {
-            knobElement.value = initialKnobValues[knobElement.id] || 50; // Usa il valore iniziale memorizzato o 50 come fallback
-            knobElement.dispatchEvent(new Event('input')); // Aggiorna il valore visualizzato
+            knobElement.value = initialKnobValues[knobElement.id] || 50; // Use the initial memorized value or 50 as fallback
+            knobElement.dispatchEvent(new Event('input')); // Update visualized value
         });
     }
 
     function resetLedStates(leds, buttons) {
         leds.forEach(function (led, index) {
-            const button = buttons[index]; // Seleziona il bottone corrispondente al LED
+            const button = buttons[index]; // Select the button corresponding to the LED
             if (led.classList.contains('led-on')) {
-                button.value = 0; // Imposta il bottone a 0
+                button.value = 0; // Set the button to 0
                 led.classList.remove('led-on');
                 led.classList.add('led-off');
             }
@@ -125,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function resetPresetMenu(presetMenu) {
-        presetMenu.value = ""; // Deseleziona il preset
+        presetMenu.value = ""; // Deselect the preset
        
     }
 
@@ -143,22 +131,13 @@ document.addEventListener('DOMContentLoaded', function () {
             resetPedalOrder(originalOrder);
             resetKnobValues(allKnobs, initialKnobValues);
             resetLedStates(leds, buttons);
-            updatePedalSequence(); // Aggiorna la lista della sequenza dei pedali
-            resetPresetMenu(presetMenu); // Reset del menu dei preset
+            updatePedalSequence(); // Update pedal sequence list
+            resetPresetMenu(presetMenu); // Reset preset menu
         });
     }
 
-    // Inizializzazione del pulsante di reset
+    // Initialize reset button
     initializeResetButton();
-
-
-
-
-
-
-
-
-
 
 });
 

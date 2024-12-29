@@ -16,9 +16,9 @@
 
 <body>
 
-    <!-- Contenitore principale -->
+    <!-- Main Container -->
     <div id="main-container">
-        <!-- Prima riga: Contiene il bottone Play -->
+        <!-- First Row: Contains Menu, Connect Audio and Reset -->
         <div id="top-row">
             <div id="preset-container">
                 <label for="preset-menu">Presets:</label>
@@ -29,12 +29,16 @@
                 </select>
                 <button id="save-preset" onclick="savePreset()">Save Current</button>
             </div>
-            <button id="reset-pedals" class="button-top-row">Reset</button> <!-- Pulsante di reset -->
-
+            <div id="button-row">
+                <button id="play-audio">Connect Audio Input</button>
+                <button id="reset-pedals" class="button-top-row">Reset</button>
+            </div>
+            <div id="input-container">
+                <div id="status">Status: Inactive</div>
+            </div>
         </div>
 
-
-        <!-- Seconda riga: Contiene i pedali -->
+        <!-- Second Row: Contains all the Pedals -->
         <div id="bottom-row">
             <div class="pedal-container" id="compressor-pedal-container">
                 <div class="pedal" id="compressor-pedal">
@@ -230,12 +234,13 @@
             </div>
         </div>
 
-        <h3>Nuovo Ordine dei Pedali:</h3>
+        <h3>New Pedal Order:</h3>
         <ul id="pedal-sequence"></ul>
 
         <script src="webaudio-controls.js"></script> <!-- JS File to control knobs -->
         <script src="script-motion.js"></script> <!-- Link to JS main file -->
         <script src="script-preset.js"></script> <!-- Link to JS main file -->
+        <script src="script-audio.js"></script> <!-- Link to JS main file -->
 </body>
 
 </html>
