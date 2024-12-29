@@ -198,3 +198,17 @@ function updatePresetMenu(newPresetName) {
 }
 
 
+// Funzione per caricare i preset salvati dall'utente da localStorage e popolare il menu
+function initializePresetMenu() {
+    const savedUserPresets = JSON.parse(localStorage.getItem('userPresets')) || {};
+    Object.keys(savedUserPresets).forEach(presetName => {
+        const option = document.createElement('option');
+        option.value = presetName;
+        option.textContent = presetName;
+        presetMenu.appendChild(option);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    initializePresetMenu(); // Carica i preset salvati
+});

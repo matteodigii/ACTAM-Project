@@ -85,8 +85,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //RESET
 
+
     // Memorizza i valori iniziali dei knob per fare il reset
     const initialKnobValues = {};
+    const presetMenu = document.getElementById('preset-menu');
 
     // Seleziona tutte le manopole e i rispettivi display
     const allKnobs = document.querySelectorAll('webaudio-knob');
@@ -97,48 +99,58 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // Funzione di reset
-    const resetButton = document.getElementById('reset-pedals');
-    resetButton.addEventListener('click', function () {
-        // Ripristina l'ordine dei pedali
-        const originalOrder = [
-            'compressor-pedal-container',
-            'overdrive-pedal-container',
-            'chorus-pedal-container',
-            'reverb-pedal-container',
-            'delay-pedal-container'
-        ];
-
+    function resetPedalOrder(originalOrder) {
         originalOrder.forEach(function (id) {
             const pedalContainer = document.getElementById(id);
-            pedalsContainer.appendChild(pedalContainer); // Aggiunge ogni pedale all'ordine originale
+            pedalsContainer.appendChild(pedalContainer); // Ripristina ogni pedale all'ordine originale
         });
+    }
 
-        // Ripristina i valori dei knob ai valori iniziali
+    function resetKnobValues(allKnobs, initialKnobValues) {
         allKnobs.forEach(function (knobElement) {
-            knobElement.value = initialKnobValues[knobElement.id] || 50; // Usa il valore iniziale memorizzato o 50 se non presente
-            knobElement.dispatchEvent(new Event('input')); // Forza l'aggiornamento del valore visualizzato
+            knobElement.value = initialKnobValues[knobElement.id] || 50; // Usa il valore iniziale memorizzato o 50 come fallback
+            knobElement.dispatchEvent(new Event('input')); // Aggiorna il valore visualizzato
         });
+    }
 
-        // Ripristina lo stato dei LED
+    function resetLedStates(leds, buttons) {
         leds.forEach(function (led, index) {
             const button = buttons[index]; // Seleziona il bottone corrispondente al LED
-
-            // Controlla se il LED è acceso (se ha la classe 'led-on')
             if (led.classList.contains('led-on')) {
-                // Se il LED è acceso, simula un clic sul bottone per spegnerlo
-                button.value = 0;
+                button.value = 0; // Imposta il bottone a 0
                 led.classList.remove('led-on');
                 led.classList.add('led-off');
-            
-                // Log per verificare il cambiamento del valore del bottone
-                console.log(`Bottone ${button.id} resettato a ${button.value}`);
             }
-            // Se il LED è già spento, non fare nulla (lo stato è già corretto)
         });
-        // Aggiorna la lista della sequenza dei pedali
-        updatePedalSequence();
+    }
 
-    });
+    function resetPresetMenu(presetMenu) {
+        presetMenu.value = ""; // Deseleziona il preset
+       
+    }
+
+    function initializeResetButton() {
+        const resetButton = document.getElementById('reset-pedals');
+        resetButton.addEventListener('click', function () {
+            const originalOrder = [
+                'compressor-pedal-container',
+                'overdrive-pedal-container',
+                'chorus-pedal-container',
+                'reverb-pedal-container',
+                'delay-pedal-container'
+            ];
+
+            resetPedalOrder(originalOrder);
+            resetKnobValues(allKnobs, initialKnobValues);
+            resetLedStates(leds, buttons);
+            updatePedalSequence(); // Aggiorna la lista della sequenza dei pedali
+            resetPresetMenu(presetMenu); // Reset del menu dei preset
+        });
+    }
+
+    // Inizializzazione del pulsante di reset
+    initializeResetButton();
+
 
 
 
