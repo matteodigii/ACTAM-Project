@@ -115,17 +115,14 @@ body {
     background-color: #092909
 }
 
-/* Chorus */
-#chorus-pedal {
+/* Tremolo */
+#tremolo-pedal {
     background: linear-gradient(to right bottom, #890641,#d44c8a,#890641 );
-    width: 240px; 
 }
-#block-3D-chorus {
-    width: 280px; 
+#block-3D-tremolo {
     background-color: #860941
 }
-#block-side-chorus {
-    width: 300px;
+#block-side-tremolo {
     background-color: #39091f
 }
 
