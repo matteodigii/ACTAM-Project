@@ -238,3 +238,37 @@ function initializePresetMenu() {
 document.addEventListener('DOMContentLoaded', function () {
     initializePresetMenu(); // Load saved presets
 });
+
+
+function deletePreset() {
+    const selectedPreset = presetMenu.value; // Ottiene il preset selezionato
+
+    if (!selectedPreset || (!userPresets[selectedPreset] && !defaultPresets[selectedPreset])) {
+        alert("Seleziona un preset valido da eliminare.");
+        return;
+    }
+
+    if (defaultPresets[selectedPreset]) {
+        alert(`Il preset \"${selectedPreset}\" è un preset di default e non può essere eliminato.`);
+        return;
+    }
+
+    if (confirm(`Sei sicuro di voler eliminare il preset \"${selectedPreset}\"?`)) {
+        // Rimuove il preset da userPresets
+        delete userPresets[selectedPreset];
+
+        // Aggiorna il localStorage
+        localStorage.setItem('userPresets', JSON.stringify(userPresets));
+
+        // Rimuove l'opzione dal menu a tendina
+        const optionToRemove = presetMenu.querySelector(`option[value="${selectedPreset}"]`);
+        if (optionToRemove) {
+            optionToRemove.remove();
+        }
+
+        // Deseleziona il menu a tendina
+        presetMenu.value = "";
+
+        alert(`Il preset \"${selectedPreset}\" è stato eliminato con successo!`);
+    }
+}
