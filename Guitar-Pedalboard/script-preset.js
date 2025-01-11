@@ -19,24 +19,63 @@ function updatePedalSequence() {
 // Default Presets, included in the WebApp
 const defaultPresets = {
     preset1: {
-        order: ['compressor-pedal-container', 'overdrive-pedal-container', 'chorus-pedal-container', 'reverb-pedal-container', 'delay-pedal-container'],
+        order: ['compressor-pedal-container', 'tremolo-pedal-container', 'overdrive-pedal-container', 'reverb-pedal-container', 'delay-pedal-container'],
         values: {
-            compressor: { attack: 30, release: 40, threshold: 50, isOn: true },
+            compressor: { attack: 30, release: 40, threshold: 50, isOn: false },
             overdrive: { drive: 50, tone: 60, isOn: false },
-            chorus: { mix: 70, rate: 50, depth: 40, isOn: true },
-            reverb: { dryWet: 60, decay: 50, isOn: true },
+            tremolo: { rate: 32, depth: 65, isOn: true },
+            reverb: { dryWet: 24, decay: 50, isOn: true },
             delay: { mix: 80, feedback: 40, time: 50, isOn: false }
         }
     },
-
     preset2: {
-        order: ['delay-pedal-container', 'reverb-pedal-container', 'chorus-pedal-container', 'overdrive-pedal-container', 'compressor-pedal-container'],
+        order: ['delay-pedal-container', 'reverb-pedal-container', 'compressor-pedal-container', 'overdrive-pedal-container', 'tremolo-pedal-container'],
         values: {
-            compressor: { attack: 70, release: 60, threshold: 40, isOn: true },
+            compressor: { attack: 100, release: 20, threshold: 50, isOn: true },
             overdrive: { drive: 40, tone: 50, isOn: false },
-            chorus: { mix: 50, rate: 60, depth: 70, isOn: true },
+            tremolo: { rate: 40, depth: 70, isOn: false },
             reverb: { dryWet: 40, decay: 30, isOn: false },
-            delay: { mix: 60, feedback: 70, time: 80, isOn: true }
+            delay: { mix: 60, feedback: 70, time: 80, isOn: false }
+        }
+    },
+    preset3: {
+        order: ['compressor-pedal-container', 'overdrive-pedal-container', 'tremolo-pedal-container', 'reverb-pedal-container', 'delay-pedal-container'],
+        values: {
+            compressor: { attack: 100, release: 20, threshold: 50, isOn: false },
+            overdrive: { drive: 75, tone: 65, isOn: true },
+            tremolo: { rate: 40, depth: 70, isOn: false },
+            reverb: { dryWet: 20, decay: 75, isOn: true },
+            delay: { mix: 35, feedback: 28, time: 50, isOn: true }
+        }
+    },
+    preset4: {
+        order: ['compressor-pedal-container', 'overdrive-pedal-container', 'reverb-pedal-container', 'tremolo-pedal-container', 'delay-pedal-container'],
+        values: {
+            compressor: { attack: 75, release: 50, threshold: 75, isOn: true },
+            overdrive: { drive: 75, tone: 65, isOn: false },
+            tremolo: { rate: 40, depth: 70, isOn: false },
+            reverb: { dryWet: 50, decay: 100, isOn: true },
+            delay: { mix: 35, feedback: 28, time: 50, isOn: false }
+        }
+    },
+    preset5: {
+        order: ['compressor-pedal-container', 'overdrive-pedal-container', 'reverb-pedal-container', 'tremolo-pedal-container', 'delay-pedal-container'],
+        values: {
+            compressor: { attack: 30, release: 15, threshold: 75, isOn: true },
+            overdrive: { drive: 75, tone: 65, isOn: false },
+            tremolo: { rate: 40, depth: 70, isOn: false },
+            reverb: { dryWet: 34, decay: 35, isOn: true },
+            delay: { mix: 35, feedback: 28, time: 50, isOn: false }
+        }
+    },
+    preset6: {
+        order: ['delay-pedal-container', 'overdrive-pedal-container', 'tremolo-pedal-container', 'reverb-pedal-container', 'compressor-pedal-container'],
+        values: {
+            compressor: { attack: 30, release: 15, threshold: 75, isOn: true },
+            overdrive: { drive: 100, tone: 100, isOn: true },
+            tremolo: { rate: 40, depth: 70, isOn: false },
+            reverb: { dryWet: 10, decay: 100, isOn: true },
+            delay: { mix: 35, feedback: 28, time: 50, isOn: false }
         }
     }
 };

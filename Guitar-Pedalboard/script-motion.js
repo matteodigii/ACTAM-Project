@@ -123,8 +123,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const originalOrder = [
                 'compressor-pedal-container',
                 'overdrive-pedal-container',
-                'chorus-pedal-container',
                 'reverb-pedal-container',
+                'tremolo-pedal-container',
                 'delay-pedal-container'
             ];
 
