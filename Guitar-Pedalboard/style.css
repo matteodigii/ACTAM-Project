@@ -337,4 +337,31 @@ body {
 }
 
 
+/* Save preset button */
+#delete-preset {
+    background-color: #b23030; 
+    color: white; 
+    font-size: 16px;
+    padding: 10px 20px; 
+    border-radius: 8px; 
+    border: none; 
+    cursor: pointer; 
+    transition: background-color 0.3s, transform 0.2s; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#delete-preset:hover {
+    background-color: #cb3030; 
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); 
+}
+
+#delete-preset:active {
+    background-color: #711b1b;
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+
 
