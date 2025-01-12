@@ -243,7 +243,7 @@ body {
     transition: background-color 0.3s ease; 
 }
 
-/* Makes the buttn red even when you point it on with the cursor */
+/* Makes the button red even when you point it on with the cursor */
 #play-audio.disconnect,
 #play-audio.disconnect:hover {
     background-color: #b23030;  
@@ -360,58 +360,58 @@ body {
     background-color: #444; 
     color: white; 
     font-weight: bold; 
-    font-size: 16px; /* Dimensione del testo */
-    padding: 10px 20px; /* Padding per il bottone */
+    font-size: 16px; 
+    padding: 10px 20px; 
     border-radius: 8px; 
     border: none; 
     box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.3); 
     cursor: pointer; 
     transition: all 0.3s ease; 
-    display: inline-block; /* Per garantire un layout regolare */
-    text-align: center; /* Allinea il testo al centro */
-    vertical-align: middle; /* Allinea il bottone verticalmente */
+    display: inline-block; 
+    text-align: center; 
+    vertical-align: middle; 
 }
 
 /* Hover effect */
 #rename-preset:hover {
-    background-color: #555; /* Cambia colore al passaggio del mouse */
-    transform: translateY(-2px); /* Effetto spostamento del bottone */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Ombra più intensa */
+    background-color: #555; 
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); 
 }
 
 /* Active effect */
 #rename-preset:active {
-    background-color: #333; /* Cambia colore al clic */
-    transform: translateY(0); /* Rimuove lo spostamento */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ombra più leggera */
+    background-color: #333; 
+    transform: translateY(0); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
 }
 
 #rec-button {
     background-color: rgb(228, 8, 8);
     color: white;
     font-weight: bold;
-    border-radius: 50%; /* Makes the button circular */
-    width: 50px; /* Adjust width */
-    height: 50px; /* Adjust height */
+    border-radius: 50%; 
+    width: 50px; 
+    height: 50px; 
     padding: 15px 13px;
     box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.3); 
     border: none;
     cursor: pointer;
-    font-size: 12px; /* Adjust font size */
-    display: inline-block; /* Per garantire un layout regolare */
-    text-align: center; /* Allinea il testo al centro */
-    vertical-align: middle; /* Allinea il bottone verticalmente */
+    font-size: 12px;
+    display: inline-block; 
+    text-align: center; 
+    vertical-align: middle; 
     transition: all 0.3s ease; 
 }
 
 #rec-button:hover{
-    background-color: red; /* Cambia colore al passaggio del mouse */
-    transform: translateY(-2px); /* Effetto spostamento del bottone */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Ombra più intensa */
+    background-color: red; 
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); 
 }
 
 #rec-button.record,
 #rec-button.record:hover {
     background-color: rgb(0, 185, 0);  
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Ombra più intensa */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); 
 }
