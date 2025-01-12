@@ -17,28 +17,35 @@
     <div id="main-container">
         <!-- First Row: Contains Menu, Connect Audio and Reset -->
         <div id="top-row">
+            <button id="rec-button" onclick="toggleRecording()">Rec</button>
             <div id="preset-container">
                 <label for="preset-menu">Presets:</label>
                 <select id="preset-menu" onchange="applyPreset()">
                     <option value="" disabled selected>Select a preset</option>
-                    <option value="preset1">Kill Bill</option>
-                    <option value="preset2">Funky</option>
-                    <option value="preset3">Dreamy Lead</option>
-                    <option value="preset4">Slow Dancing</option>
-                    <option value="preset5">Bossa Nova</option>
-                    <option value="preset6">Black Dog</option>
+                    <option value="Kill_Bill">Kill Bill</option>
+                    <option value="Funky">Funky</option>
+                    <option value="Dreamy_Lead">Dreamy Lead</option>
+                    <option value="Slow_Dancing">Slow Dancing</option>
+                    <option value="Bossa_Nova">Bossa Nova</option>
+                    <option value="Black_Dog">Black Dog</option>
                 </select>
                 <button id="save-preset" onclick="savePreset()">Save Current</button>
-                <button id="delete-preset" onclick="deletePreset()">Delete this preset</button>
+                <button id="rename-preset" onclick="renamePreset()">Rename</button>
+                <button id="delete-preset" onclick="deletePreset()">Delete</button>
+                
+               
             </div>
             <div id="button-row">
-                <button id="play-audio">Connect Audio Input</button>
+                <button id="play-audio">Connect</button>
                 <button id="reset-pedals" class="button-top-row">Reset</button>
+                
             </div>
             <div id="input-container">
                 <div id="status">Status: Inactive</div>
             </div>
+            
         </div>
+        
 
         <!-- Second Row: Contains all the Pedals -->
         <div id="bottom-row">

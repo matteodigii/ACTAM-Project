@@ -18,7 +18,7 @@ function updatePedalSequence() {
 
 // Default Presets, included in the WebApp
 const defaultPresets = {
-    preset1: {
+    Kill_Bill: {
         order: ['compressor-pedal-container', 'tremolo-pedal-container', 'overdrive-pedal-container', 'reverb-pedal-container', 'delay-pedal-container'],
         values: {
             compressor: { attack: 30, release: 40, threshold: 50, isOn: false },
@@ -28,7 +28,7 @@ const defaultPresets = {
             delay: { mix: 80, feedback: 40, time: 50, isOn: false }
         }
     },
-    preset2: {
+    Funky: {
         order: ['delay-pedal-container', 'reverb-pedal-container', 'compressor-pedal-container', 'overdrive-pedal-container', 'tremolo-pedal-container'],
         values: {
             compressor: { attack: 100, release: 20, threshold: 50, isOn: true },
@@ -38,7 +38,7 @@ const defaultPresets = {
             delay: { mix: 60, feedback: 70, time: 80, isOn: false }
         }
     },
-    preset3: {
+    Dreamy_Lead: {
         order: ['compressor-pedal-container', 'overdrive-pedal-container', 'tremolo-pedal-container', 'reverb-pedal-container', 'delay-pedal-container'],
         values: {
             compressor: { attack: 100, release: 20, threshold: 50, isOn: false },
@@ -48,7 +48,7 @@ const defaultPresets = {
             delay: { mix: 35, feedback: 28, time: 50, isOn: true }
         }
     },
-    preset4: {
+    Slow_Dancing: {
         order: ['compressor-pedal-container', 'overdrive-pedal-container', 'reverb-pedal-container', 'tremolo-pedal-container', 'delay-pedal-container'],
         values: {
             compressor: { attack: 75, release: 50, threshold: 75, isOn: true },
@@ -58,7 +58,7 @@ const defaultPresets = {
             delay: { mix: 35, feedback: 28, time: 50, isOn: false }
         }
     },
-    preset5: {
+    Bossa_Nova: {
         order: ['compressor-pedal-container', 'overdrive-pedal-container', 'reverb-pedal-container', 'tremolo-pedal-container', 'delay-pedal-container'],
         values: {
             compressor: { attack: 30, release: 15, threshold: 75, isOn: true },
@@ -68,7 +68,7 @@ const defaultPresets = {
             delay: { mix: 35, feedback: 28, time: 50, isOn: false }
         }
     },
-    preset6: {
+    Black_Dog: {
         order: ['delay-pedal-container', 'overdrive-pedal-container', 'tremolo-pedal-container', 'reverb-pedal-container', 'compressor-pedal-container'],
         values: {
             compressor: { attack: 30, release: 15, threshold: 75, isOn: true },
@@ -148,10 +148,10 @@ function updatePedalState(pedalContainer, led, button, isOn) {
 
 // Save Preset Function
 function savePreset() {
-    const newPresetName = prompt("Inserisci il nome del nuovo preset:");
+    const newPresetName = prompt("Enter the name of the new preset:");
     // Verify if it already exists a preset with the same name in userPresets or defaultPresets
     if (userPresets[newPresetName] || defaultPresets[newPresetName]) {
-        if (confirm(`Il preset "${newPresetName}" esiste già. Vuoi sostituirlo?`)) {
+        if (confirm(`The preset "${newPresetName}" already exists. Do you want to replace it?`)) {
             // If yes (in userPresets), replace it
             if (userPresets[newPresetName]) {
                 userPresets[newPresetName] = createPresetData();
@@ -174,7 +174,7 @@ function savePreset() {
     // Update preset menu
     updatePresetMenu(newPresetName);
 
-    alert(`Preset "${newPresetName}" salvato con successo!`);
+    alert(`Preset "${newPresetName}" successfully saved!`);
 }
 
 // Create Preset Data Function (pedals order and knobs value)
@@ -244,16 +244,16 @@ function deletePreset() {
     const selectedPreset = presetMenu.value; // Ottiene il preset selezionato
 
     if (!selectedPreset || (!userPresets[selectedPreset] && !defaultPresets[selectedPreset])) {
-        alert("Seleziona un preset valido da eliminare.");
+        alert("Select a valid preset to delete.");
         return;
     }
 
     if (defaultPresets[selectedPreset]) {
-        alert(`Il preset \"${selectedPreset}\" è un preset di default e non può essere eliminato.`);
+        alert(`\"${selectedPreset}\" is a default preset.`);
         return;
     }
 
-    if (confirm(`Sei sicuro di voler eliminare il preset \"${selectedPreset}\"?`)) {
+    if (confirm(`Are you sure you want to delete \"${selectedPreset}\"?`)) {
         // Rimuove il preset da userPresets
         delete userPresets[selectedPreset];
 
@@ -269,6 +269,48 @@ function deletePreset() {
         // Deseleziona il menu a tendina
         presetMenu.value = "";
 
-        alert(`Il preset \"${selectedPreset}\" è stato eliminato con successo!`);
+        alert(`Preset \"${selectedPreset}\" successfully deleted!`);
+    }
+}
+
+
+
+
+function renamePreset() {
+    const selectedPreset = presetMenu.value; // Get the selected preset from the dropdown menu
+
+    // Check if the selected preset is one of the default presets
+    if (defaultPresets[selectedPreset]) {
+        alert("You cannot rename default presets.");
+        return; // Exit the function if the preset is a default preset
+    }
+
+    // Ask for the new name of the preset
+    const newPresetName = prompt("Enter the new name for the preset:");
+
+    // Check if the name is not empty and that the new name doesn't already exist
+    if (newPresetName && !userPresets[newPresetName]) {
+        // Save the preset with the new name
+        userPresets[newPresetName] = userPresets[selectedPreset];
+
+        // Delete the old preset
+        delete userPresets[selectedPreset];
+        
+        const optionToRemove = presetMenu.querySelector(`option[value="${selectedPreset}"]`);
+        if (optionToRemove) {
+            optionToRemove.remove(); // Rimuove l'opzione dal menu a tendina
+        }
+
+        // Update the localStorage
+        localStorage.setItem('userPresets', JSON.stringify(userPresets));
+
+
+        // Update the preset menu
+        updatePresetMenu(newPresetName);
+
+
+        alert(`Preset successfully renamed.`);
+    } else {
+        alert("Invalid name");
     }
 }
