@@ -6,7 +6,8 @@
 
 Hi! We are Andrea Antognetti and Matteo Di Giovanni and this is the repo containing the project we developed for the [“**Advanced Coding Tools And Methodologies**”](https://www4.ceda.polimi.it/manifesti/manifesti/controller/ManifestoPublic.do?EVN_DETTAGLIO_RIGA_MANIFESTO=evento&aa=2024&k_cf=225&k_corso_la=263&k_indir=MMI&codDescr=052828&lang=IT&semestre=1&anno_corso=1&idItemOfferta=168526&idRiga=307212) course examination in the **Music Engineering** Master’s degree program at Politecnico di Milano (**Polimi**).
 
-To have a look at the final result and play with it open this [link](https://matteodigii.github.io/ACTAM-Project/Guitar-Pedalboard/).\
+To have a look at the final result and play with it open this [link](https://matteodigii.github.io/ACTAM-Project/Guitar-Pedalboard/).
+
 You can also find a demo made using only built-in presets [here]().
 
 ### Main Purposes of the App
@@ -15,7 +16,7 @@ Grant the user the possibility to experiment with lots of sound combinations and
 
 ## 1.0 User Instructions
 ### How to set up your environment
-Foto collegamento chitarra -> scheda audio-> pc\
+Foto collegamento chitarra -> scheda audio-> Pc
 
 To correctly use and enjoy our pedalboard functionalities you will need:
 -  An **Audio Interface**: we did everything with the [**Steinberg UR22mkII**](https://www.steinberg.net/audio-interfaces/ur22c-recording-pack/ur22mkii/value-edition/), that has 24-bit/196kHz audio resolution.
@@ -76,7 +77,11 @@ With this button you can save your pedalboard status and then name with somethin
 
 Have you changed idea regarding a preset? Clicking this button will make it disappear! 
 
-But pay attention, you cannot use it to cancel our presets, would it be rude right?
+But pay attention, you cannot use it to cancel our presets, it would be rude, right?
+
+**Rec**
+
+Would like to make your friends hear the wonderful sounds you made with this app? Now you can!  
 
 ## 1.1 Code Implementation
 We subdivided our backend structure in three different script: **Motion**, **Presets**, **Audio**.
@@ -113,14 +118,18 @@ The only libraries employed for this project are "**webaudio-controls**" and "**
 
 The rest is entirely made relying on "**Web Audio API**" (referring specifically to effects design).
 
-## 1.3 Latency
+## 1.2 Latency
 Regarding Latency we can confidently say it’s possible to obtain good outcomes if playing single notes or slow strummed chords. 
 
-When increasing speed of playing, it starts to get messy and risks to confuse the player. 
+Whenever increasing speed of playing, it starts to get messy and it could arise the risks that the player gets confused, not being able to play correctly. 
 
-With some simple measurements we found that latency oscillates around 9-10ms, which is acceptable, but still noticeable, even though for live performance purposes it would be better to achieve a maximum of 5ms. 
+With some simple measurements we found that latency oscillates around 9-10ms for the acquired input signal, which is acceptable, but still noticeable, even though for live performance purposes it would be better to achieve a maximum of 5ms. 
 
-Considering that we’re not only acquiring the input but also processing it, this result it's pretty much impossible to achieve.
+Considering that we’re not only acquiring the input but also processing it, latency will tend to incrase (depending also on the number of active pedals) making this result pretty much impossible to achieve.
+
+It's also important to stress that latency cannot be totally eliminated in such type of applications.
+
+However it could be lowered depending on the quality of the used hardware (ADC in the Audio Interface). 
 
 ## 2. Possible Improvements
 Adding a **login policy** to allow registered users to save in an external Server their custom made preset so that only them using a different laptop can access those.

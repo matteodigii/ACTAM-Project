@@ -17,6 +17,10 @@ let button3 = document.getElementById('button_reverb');
 let button4 = document.getElementById('button_tremolo');
 let button5 = document.getElementById('button_delay');
 
+let mediaRecorder = null;
+let recordedChunks = [];
+let isRecording = false;
+
 // Fuction for updating knob values
 function updateKnobValues(id, value) {
     const valueElement = document.getElementById(`${id}-value`);
@@ -88,15 +92,80 @@ document.getElementById('play-audio').addEventListener('click', async function (
       document.getElementById('preset-menu').addEventListener('click', async function () {
         updateChain(audioContext, input);
       });
+
+      document.getElementById('rec-button').addEventListener('click', async function () {
+        const buttonrec = this;
+        if(audioContext){
+          if (!mediaRecorder) {
+            try {
+              // Creating a MediaStreamDestination to capture the output of the signal chain 
+              const destination = audioContext.createMediaStreamDestination();
+          
+              // Link the last node of the audio chain to MediaStreamDestination
+              updateRecord(audioContext, input, destination);
+          
+              // SetUp the MediaRecorder with the generated stream
+              mediaRecorder = new MediaRecorder(destination.stream);
+              mediaRecorder.ondataavailable = (event) => {
+                if (event.data.size > 0) {
+                  recordedChunks.push(event.data);
+                }
+              };
+              
+              mediaRecorder.onstop = () => {
+                const audioBlob = new Blob(recordedChunks, { type: "audio/wav" });
+                recordedChunks = [];
+          
+                // Creating and URL for the registered audio 
+                const audioURL = URL.createObjectURL(audioBlob);
+                console.log("Available recorded audio here:", audioURL);
+          
+                // Create automatically a download link and start the download 
+                const downloadLink = document.createElement("a");
+                downloadLink.href = audioURL;
+                downloadLink.download = "Recording.wav"; // File name
+          
+                // Start automatically the download
+                downloadLink.click();
+          
+                // Release temporary URL
+                URL.revokeObjectURL(audioURL);
+              };
+          
+            } catch (error) {
+              console.error("Error during recorder configuration:", error);
+              statusDiv.textContent = "Error: Recording Configuration Impossible.";
+              return;
+            }
+          }    
+          // Start or Stop the recording
+          if (isRecording) {
+            mediaRecorder.stop();
+            isRecording = false;
+            statusDiv.textContent = "Recording Interrupted.";
+            console.log("Recording Interrupted.");
+            buttonrec.textContent = 'REC';
+            buttonrec.classList.remove('record'); // Add class to make the button green
+          } else {
+            recordedChunks = [];
+            mediaRecorder.start();
+            isRecording = true;
+            statusDiv.textContent = "Recording Started.";
+            console.log("Recording Started.");
+            buttonrec.textContent = 'ON';
+            buttonrec.classList.add('record'); // Add class to make the button green
+          }          
+        }
+      });
     
       // Adjourn User Interface
       buttonplay.textContent = 'Disconnect Audio Input';
       buttonplay.classList.add('disconnect'); // Add class to make the button red
-      statusDiv.textContent = 'Status: audio active';
+      statusDiv.textContent = 'Status: Audio Active';
 
     } catch (error) {
       console.error('Error during audio activation:', error);
-      statusDiv.textContent = 'Error: failed audio activation';
+      statusDiv.textContent = 'Error: Failed Audio Activation';
     }
   } else {
     // Disactivate audio
@@ -112,11 +181,11 @@ document.getElementById('play-audio').addEventListener('click', async function (
       // Adjourn UI
       buttonplay.textContent = 'Connect Audio Input';
       buttonplay.classList.remove('disconnect'); // Remove class to bring the button to the original color
-      statusDiv.textContent = 'Status: audio inactive';
+      statusDiv.textContent = 'Status: Audio Inactive';
 
     } catch (error) {
       console.error('Error during audio disactivation:', error);
-      statusDiv.textContent = 'Error: failed audio disactivation';
+      statusDiv.textContent = 'Error: Failed Audio Disactivation';
     }
   }
 });
@@ -193,6 +262,79 @@ function updateChain(audioContext, input){
   merger.connect(audioContext.destination);
 
 }
+
+// Update for Recording Function
+function updateRecord(audioContext, input, destination){
+
+  // Disconnect everything
+  if(input){
+    input.disconnect();
+  }
+  if(compressorNode){
+    compressorNode.output.disconnect();
+    compressorNode = null;
+  }
+  if(overdriveNode){
+    overdriveNode.output.disconnect();
+    overdriveNode = null;
+  }
+  if(tremoloNode){
+    tremoloNode.output.disconnect();
+    tremoloNode = null;
+  }
+  if(reverbNode){
+    reverbNode.output.disconnect();
+    reverbNode = null;
+  }
+  if(delayNode){
+    delayNode.output.disconnect();
+    delayNode = null;
+  }
+
+  // Begin the dynamic list processing
+  let currentNode = input;
+
+  // If i see a pedal on, i visit that specific node
+  if(button1.value === 1){
+    compressorNode = compressorPedal(audioContext, currentNode);
+    currentNode = compressorNode.output;
+  }
+  if(button2.value === 1){
+    overdriveNode = overdrivePedal(audioContext, currentNode);
+    currentNode = overdriveNode.output;
+  }
+  if(button3.value === 1){
+    reverbNode = reverbPedal(audioContext, currentNode);
+    currentNode = reverbNode.output;
+  }
+  if(button4.value === 1){
+    tremoloNode = tremoloPedal(audioContext, currentNode);
+    currentNode = tremoloNode.output;
+  }
+  if(button5.value === 1){
+    delayNode = delayPedal(audioContext, currentNode);
+    currentNode = delayNode.output;
+  }
+
+  // To hear a final stereo sound
+  const merger = audioContext.createChannelMerger(2);
+  currentNode.connect(merger, 0, 0); // Left
+  currentNode.connect(merger, 0, 1); // Right
+  merger.connect(audioContext.destination);
+
+  // If a destination exist also connect it (this is to have stereo output)
+  if(destination){
+    merger.connect(destination);
+  }
+}
+
+
+document.getElementById('rec-button').addEventListener('click', async function () {
+  const statusDiv = document.getElementById('status');
+  if(!audioContext){
+    statusDiv.textContent = 'Nothing to be recorded yet!';
+  }
+});
 
 //////////////////////////////////////////////////
 

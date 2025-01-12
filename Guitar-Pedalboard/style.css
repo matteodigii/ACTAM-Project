@@ -64,7 +64,7 @@ body {
 
 /* Class needed during drag movements */
 .ghostClass {
-    opacity: 0;  /* To make the element invisible and not leave any shadow */
+    opacity: 0%;  /* To make the element invisible and not leave any shadow */
 }
 
 .block-3D {
@@ -246,7 +246,8 @@ body {
 /* Makes the buttn red even when you point it on with the cursor */
 #play-audio.disconnect,
 #play-audio.disconnect:hover {
-    background-color: #dc3545; 
+    background-color: #b23030;  
+    
 }
 
 /* Status */
@@ -260,21 +261,14 @@ body {
 #reset-pedals {
     background-color: #000000; 
     color: white; 
-    font-size: 20px; 
     font-weight: bold; 
-    padding: 15px 30px; 
-    border-radius: 10px;
+    font-size: 20px; /* Aumentato rispetto al valore precedente */
+    padding: 15px 30px; /* Aumentato per rendere il bottone più grande */
+    border-radius: 10px; 
     border: none; 
     box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.3); 
     cursor: pointer; 
     transition: all 0.3s ease; 
-}
-
-/* Hover effect */
-#reset-pedals:hover {
-    background-color: #333333; 
-    box-shadow: 5px 15px 25px rgba(0, 0, 0, 0.4); 
-    transform: translateY(-2px); 
 }
 
 /* Main Preset container */
@@ -313,6 +307,7 @@ body {
     background-color: #444; 
     color: white; 
     font-size: 16px;
+    font-weight: bold; 
     padding: 10px 20px; 
     border-radius: 8px; 
     border: none; 
@@ -339,6 +334,7 @@ body {
     background-color: #b23030; 
     color: white; 
     font-size: 16px;
+    font-weight: bold; 
     padding: 10px 20px; 
     border-radius: 8px; 
     border: none; 
@@ -359,5 +355,63 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* Rename button */
+#rename-preset {
+    background-color: #444; 
+    color: white; 
+    font-weight: bold; 
+    font-size: 16px; /* Dimensione del testo */
+    padding: 10px 20px; /* Padding per il bottone */
+    border-radius: 8px; 
+    border: none; 
+    box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.3); 
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+    display: inline-block; /* Per garantire un layout regolare */
+    text-align: center; /* Allinea il testo al centro */
+    vertical-align: middle; /* Allinea il bottone verticalmente */
+}
 
+/* Hover effect */
+#rename-preset:hover {
+    background-color: #555; /* Cambia colore al passaggio del mouse */
+    transform: translateY(-2px); /* Effetto spostamento del bottone */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Ombra più intensa */
+}
 
+/* Active effect */
+#rename-preset:active {
+    background-color: #333; /* Cambia colore al clic */
+    transform: translateY(0); /* Rimuove lo spostamento */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ombra più leggera */
+}
+
+#rec-button {
+    background-color: rgb(228, 8, 8);
+    color: white;
+    font-weight: bold;
+    border-radius: 50%; /* Makes the button circular */
+    width: 50px; /* Adjust width */
+    height: 50px; /* Adjust height */
+    padding: 15px 13px;
+    box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.3); 
+    border: none;
+    cursor: pointer;
+    font-size: 12px; /* Adjust font size */
+    display: inline-block; /* Per garantire un layout regolare */
+    text-align: center; /* Allinea il testo al centro */
+    vertical-align: middle; /* Allinea il bottone verticalmente */
+    transition: all 0.3s ease; 
+}
+
+#rec-button:hover{
+    background-color: red; /* Cambia colore al passaggio del mouse */
+    transform: translateY(-2px); /* Effetto spostamento del bottone */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Ombra più intensa */
+}
+
+#rec-button.record,
+#rec-button.record:hover {
+    background-color: rgb(0, 185, 0);  
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Ombra più intensa */
+}
