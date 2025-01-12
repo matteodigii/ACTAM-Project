@@ -17,6 +17,7 @@
     <div id="main-container">
         <!-- First Row: Contains Menu, Connect Audio and Reset -->
         <div id="top-row">
+            <button id="rec-button" onclick="toggleRecording()">Rec</button>
             <div id="preset-container">
                 <label for="preset-menu">Presets:</label>
                 <select id="preset-menu" onchange="applyPreset()">
@@ -32,20 +33,16 @@
                 <button id="rename-preset" onclick="renamePreset()">Rename</button>
                 <button id="delete-preset" onclick="deletePreset()">Delete</button>
                 <button id="rec-button">REC</button>
-                
             </div>
             <div id="button-row">
-                <button id="play-audio">Connect Audio Input</button>
+                <button id="play-audio">Connect</button>
                 <button id="reset-pedals" class="button-top-row">Reset</button>
-                
             </div>
             <div id="input-container">
                 <div id="status">Status: Inactive</div>
             </div>
-            
         </div>
         
-
         <!-- Second Row: Contains all the Pedals -->
         <div id="bottom-row">
             <div class="pedal-container" id="compressor-pedal-container">

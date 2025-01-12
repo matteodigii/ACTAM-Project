@@ -159,7 +159,7 @@ document.getElementById('play-audio').addEventListener('click', async function (
       });
     
       // Adjourn User Interface
-      buttonplay.textContent = 'Disconnect Audio Input';
+      buttonplay.textContent = 'Disconnect';
       buttonplay.classList.add('disconnect'); // Add class to make the button red
       statusDiv.textContent = 'Status: Audio Active';
 
@@ -179,7 +179,7 @@ document.getElementById('play-audio').addEventListener('click', async function (
       audioContext = null;
 
       // Adjourn UI
-      buttonplay.textContent = 'Connect Audio Input';
+      buttonplay.textContent = 'Connect';
       buttonplay.classList.remove('disconnect'); // Remove class to bring the button to the original color
       statusDiv.textContent = 'Status: Audio Inactive';
 
@@ -260,6 +260,8 @@ function updateChain(audioContext, input){
   currentNode.connect(merger, 0, 0); // Left
   currentNode.connect(merger, 0, 1); // Right
   merger.connect(audioContext.destination);
+
+  
 
 }
 
@@ -686,3 +688,6 @@ delayfeedbackKnob.addEventListener('input', (event) => {
       updateKnobValues('Knob-feedback-delay', value);
   }
 });
+
+
+
