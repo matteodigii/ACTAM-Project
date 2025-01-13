@@ -20,10 +20,6 @@ let button5 = document.getElementById('button_delay');
 let mediaRecorder = null;
 let recordedChunks = [];
 let isRecording = false;
-let destination = null;
-let audioBlob = null;
-let audioURL = null;
-let downloadLink = null;
 
 // Fuction for updating knob values
 function updateKnobValues(id, value) {
@@ -103,7 +99,7 @@ document.getElementById('play-audio').addEventListener('click', async function (
           if (!mediaRecorder) {
             try {
               // Creating a MediaStreamDestination to capture the output of the signal chain 
-              destination = audioContext.createMediaStreamDestination();
+              const destination = audioContext.createMediaStreamDestination();
           
               // Link the last node of the audio chain to MediaStreamDestination
               updateRecord(audioContext, input, destination);
@@ -117,15 +113,15 @@ document.getElementById('play-audio').addEventListener('click', async function (
               };
               
               mediaRecorder.onstop = () => {
-                audioBlob = new Blob(recordedChunks, { type: "audio/wav" });
+                const audioBlob = new Blob(recordedChunks, { type: "audio/wav" });
                 recordedChunks = [];
           
                 // Creating and URL for the registered audio 
-                audioURL = URL.createObjectURL(audioBlob);
+                const audioURL = URL.createObjectURL(audioBlob);
                 console.log("Available recorded audio here:", audioURL);
           
                 // Create automatically a download link and start the download 
-                downloadLink = document.createElement("a");
+                const downloadLink = document.createElement("a");
                 downloadLink.href = audioURL;
                 downloadLink.download = "Recording.wav"; // File name
           
