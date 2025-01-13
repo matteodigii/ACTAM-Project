@@ -74,36 +74,24 @@ document.getElementById('play-audio').addEventListener('click', async function (
       lineInSource.connect(input);
 
       // Firstly connect the input to the output
-      updateChain(audioContext, input);
+      updateChain(audioContext, input, destination);
 
       // Check for all the possible active connections to implement
       const switches = document.querySelectorAll('webaudio-switch');
       switches.forEach(function (button) {
         button.addEventListener('click', function(){
-          if(!mediaRecorder){
-            updateChain(audioContext, input);
-          } else {
-            updateRecord(audioContext, input, destination);
-          }
+          updateChain(audioContext, input, destination);
         })
       });
 
       // If the user wants reset, adjourn pedalboard
       document.getElementById('reset-pedals').addEventListener('click', async function () {
-        if(!mediaRecorder){
-          updateChain(audioContext, input);
-        } else {
-          updateRecord(audioContext, input, destination);
-        }
+        updateChain(audioContext, input, destination);
       });
 
       // If the user switches preset, adjourn pedalboard
       document.getElementById('preset-menu').addEventListener('click', async function () {
-        if(!mediaRecorder){
-          updateChain(audioContext, input);
-        } else {
-          updateRecord(audioContext, input, destination);
-        }
+        updateChain(audioContext, input, destination);
       });
 
       document.getElementById('rec-button').addEventListener('click', async function () {
@@ -115,7 +103,7 @@ document.getElementById('play-audio').addEventListener('click', async function (
               destination = audioContext.createMediaStreamDestination();
           
               // Link the last node of the audio chain to MediaStreamDestination
-              updateRecord(audioContext, input, destination);
+              updateChain(audioContext, input, destination);
           
               // SetUp the MediaRecorder with the generated stream
               mediaRecorder = new MediaRecorder(destination.stream);
@@ -218,69 +206,8 @@ function loadImpulseResponse(url) {
     .catch(error => console.error('Error loading the impulse response:', error));
 }
 
-// Update Chain Function
-function updateChain(audioContext, input){
-
-  // Disconnect everything
-  if(input){
-    input.disconnect();
-  }
-  if(compressorNode){
-    compressorNode.output.disconnect();
-    compressorNode = null;
-  }
-  if(overdriveNode){
-    overdriveNode.output.disconnect();
-    overdriveNode = null;
-  }
-  if(tremoloNode){
-    tremoloNode.output.disconnect();
-    tremoloNode = null;
-  }
-  if(reverbNode){
-    reverbNode.output.disconnect();
-    reverbNode = null;
-  }
-  if(delayNode){
-    delayNode.output.disconnect();
-    delayNode = null;
-  }
-
-  // Begin the dynamic list processing
-  let currentNode = input;
-
-  // If i see a pedal on, i visit that specific node
-  if(button1.value === 1){
-    compressorNode = compressorPedal(audioContext, currentNode);
-    currentNode = compressorNode.output;
-  }
-  if(button2.value === 1){
-    overdriveNode = overdrivePedal(audioContext, currentNode);
-    currentNode = overdriveNode.output;
-  }
-  if(button3.value === 1){
-    reverbNode = reverbPedal(audioContext, currentNode);
-    currentNode = reverbNode.output;
-  }
-  if(button4.value === 1){
-    tremoloNode = tremoloPedal(audioContext, currentNode);
-    currentNode = tremoloNode.output;
-  }
-  if(button5.value === 1){
-    delayNode = delayPedal(audioContext, currentNode);
-    currentNode = delayNode.output;
-  }
-
-  // To hear a final stereo sound
-  const merger = audioContext.createChannelMerger(2);
-  currentNode.connect(merger, 0, 0); // Left
-  currentNode.connect(merger, 0, 1); // Right
-  merger.connect(audioContext.destination);
-
-}
-
 // Update for Recording Function
-function updateRecord(audioContext, input, destination){
+function updateChain(audioContext, input, destination){
 
   // Disconnect everything
   if(input){

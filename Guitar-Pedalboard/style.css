@@ -243,11 +243,17 @@ body {
     transition: background-color 0.3s ease; 
 }
 
+#play-audio:hover{
+    background-color: #11b835; 
+    transform: translateY(-2px); 
+}
 /* Makes the button red even when you point it on with the cursor */
-#play-audio.disconnect,
-#play-audio.disconnect:hover {
+#play-audio.disconnect{
     background-color: #b23030;  
-    
+}
+
+#play-audio.disconnect:hover {
+    background-color: #d53b3b;  
 }
 
 /* Status */
@@ -269,6 +275,11 @@ body {
     box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.3); 
     cursor: pointer; 
     transition: all 0.3s ease; 
+}
+
+#reset-pedals:hover{
+    background-color: #282828; 
+    transform: translateY(-2px); 
 }
 
 /* Main Preset container */

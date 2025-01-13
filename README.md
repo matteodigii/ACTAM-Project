@@ -42,7 +42,7 @@ Designed paying attention to the newest trends in audio processing while still m
 
 Each one of them emulates a specific guitar-type effect, there are five of them, two pre-processors, a modulation and two ambient ones: 
 -	**Compressor**, speaks for itself.
--	**Overdrive**, distorts the sound ranging from mild booster to acid 60s Led Zeppelin type sound.
+-	**Overdrive**, distorts the sound ranging from mild booster to acid 70s "Led Zeppelin" type sound.
 -	**Reverb**, adds a nice lasting tail to your sound, seems to be in a concert hall right?.
 -	**Tremolo**, emulates a typical 60s surfing/waving sound to enrich your sound palette.
 -	**Delay**, adds delay repetition to your input signal, the cherry on the top.
@@ -57,7 +57,7 @@ Allows the user to dynamically update the signal chain, deciding whether or not 
 
 **Leds**
 
-Will help the user to understand the state of a specific pedal
+Will help the user to understand the state of a specific pedal.
 
 **Input Button**
 
@@ -73,7 +73,7 @@ Here it’s possible to find all our custom build presets to have a first try at
 
 **Save**
 
-With this button you can save your pedalboard status and then name with something cool. You just made a preset, fun right?
+With this button you can save your pedalboard status and then name with something cool. You just made a preset, fun indeed!
 
 **Delete**
 
@@ -131,12 +131,14 @@ Considering that we’re not only acquiring the input but also processing it, la
 
 It's also important to stress that latency cannot be totally eliminated in such type of applications.
 
-However it could be lowered depending on the quality of the used hardware (ADC in the Audio Interface). 
+However it could be lowered depending on the quality of the used hardware, the ADC in the Audio Interface: in fact we saw better overall performances with the Steinberger rather than with the Scarlett (model specified below). 
 
 ## 2. Possible Improvements
-Adding a **login policy** to allow registered users to save in an external Server their custom made preset so that only them using a different laptop can access those.
+- Adding a **login policy** to allow registered users to save in an external Server their custom made preset so that only them using a different laptop can access those.
 
-Do the testing also on other audio interfaces and browsers to ensure compatibility. At the moment, only **Steinberg UR22mkII**, **Scarlett Solo Gen3**, as audio interfaces, and **Google Chrome**, as browser, are taken into account (the latter because it’s the most world-wide spread one).
+- Developing more pedals and implement the possibility for the user to choose which of them to add in his customized pedalboard.
+
+- Testing also on other audio interfaces and browsers to ensure compatibility. At the moment, only **Steinberg UR22mkII**, **Scarlett Solo Gen3**, as audio interfaces, and **Google Chrome**, as browser, are taken into account (the latter because it’s the most world-wide spread one).
 
 ## About us
 | Name                                                  | Email                         |
