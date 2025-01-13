@@ -16,7 +16,8 @@ Grant the user the possibility to experiment with lots of sound combinations and
 
 ## 1.0 User Instructions
 ### How to set up your environment
-Foto collegamento chitarra -> scheda audio-> Pc
+
+![signalChain](ReadMeUtils/SignalChain.png)
 
 To correctly use and enjoy our pedalboard functionalities you will need:
 -  An **Audio Interface**: we did everything with the [**Steinberg UR22mkII**](https://www.steinberg.net/audio-interfaces/ur22c-recording-pack/ur22mkii/value-edition/), that has 24-bit/196kHz audio resolution.
@@ -33,9 +34,9 @@ In building our model Graphic User Interface (**GUI**) we focused on the main as
 
 Here you can see a detailed snapshot of the project:
 
-Foto pedaliera
+![pedalBoardPic](ReadMeUtils/Explanation.png)
 
-**Pedal**
+**Pedals**
 
 Designed paying attention to the newest trends in audio processing while still maintaining an overall traditional look. 
 
@@ -55,6 +56,7 @@ With whom you can control and adjust all pedal parameters.
 Allows the user to dynamically update the signal chain, deciding whether or not turn on a specific pedal.
 
 **Leds**
+
 Will help the user to understand the state of a specific pedal
 
 **Input Button**
@@ -67,7 +69,7 @@ Are you unsure of the changes you made? Don’t worry, we have the right solutio
 
 **Presets Menu**
 
-Here It’s possible to find all our custom build presets to have a first try at the pedalboard and then find your presets when you start making and saving them.
+Here it’s possible to find all our custom build presets to have a first try at the pedalboard and then find your presets when you start making and saving them.
 
 **Save**
 

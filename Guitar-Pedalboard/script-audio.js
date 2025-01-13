@@ -20,6 +20,10 @@ let button5 = document.getElementById('button_delay');
 let mediaRecorder = null;
 let recordedChunks = [];
 let isRecording = false;
+let destination = null;
+let audioBlob = null;
+let audioURL = null;
+let downloadLink = null;
 
 // Fuction for updating knob values
 function updateKnobValues(id, value) {
@@ -99,7 +103,7 @@ document.getElementById('play-audio').addEventListener('click', async function (
           if (!mediaRecorder) {
             try {
               // Creating a MediaStreamDestination to capture the output of the signal chain 
-              const destination = audioContext.createMediaStreamDestination();
+              destination = audioContext.createMediaStreamDestination();
           
               // Link the last node of the audio chain to MediaStreamDestination
               updateRecord(audioContext, input, destination);
@@ -113,15 +117,15 @@ document.getElementById('play-audio').addEventListener('click', async function (
               };
               
               mediaRecorder.onstop = () => {
-                const audioBlob = new Blob(recordedChunks, { type: "audio/wav" });
+                audioBlob = new Blob(recordedChunks, { type: "audio/wav" });
                 recordedChunks = [];
           
                 // Creating and URL for the registered audio 
-                const audioURL = URL.createObjectURL(audioBlob);
+                audioURL = URL.createObjectURL(audioBlob);
                 console.log("Available recorded audio here:", audioURL);
           
                 // Create automatically a download link and start the download 
-                const downloadLink = document.createElement("a");
+                downloadLink = document.createElement("a");
                 downloadLink.href = audioURL;
                 downloadLink.download = "Recording.wav"; // File name
           
@@ -145,7 +149,7 @@ document.getElementById('play-audio').addEventListener('click', async function (
             statusDiv.textContent = "Recording Interrupted.";
             console.log("Recording Interrupted.");
             buttonrec.textContent = 'REC';
-            buttonrec.classList.remove('record'); // Add class to make the button green
+            buttonrec.classList.remove('record'); // Remove class to make the button red again
           } else {
             recordedChunks = [];
             mediaRecorder.start();
@@ -263,8 +267,6 @@ function updateChain(audioContext, input){
   currentNode.connect(merger, 0, 0); // Left
   currentNode.connect(merger, 0, 1); // Right
   merger.connect(audioContext.destination);
-
-  
 
 }
 
