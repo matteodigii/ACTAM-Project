@@ -20,6 +20,7 @@ let button5 = document.getElementById('button_delay');
 let mediaRecorder = null;
 let recordedChunks = [];
 let isRecording = false;
+let destination = null;
 
 // Fuction for updating knob values
 function updateKnobValues(id, value) {
@@ -79,18 +80,30 @@ document.getElementById('play-audio').addEventListener('click', async function (
       const switches = document.querySelectorAll('webaudio-switch');
       switches.forEach(function (button) {
         button.addEventListener('click', function(){
-           updateChain(audioContext, input);
+          if(!mediaRecorder){
+            updateChain(audioContext, input);
+          } else {
+            updateRecord(audioContext, input, destination);
+          }
         })
       });
 
       // If the user wants reset, adjourn pedalboard
       document.getElementById('reset-pedals').addEventListener('click', async function () {
-        updateChain(audioContext, input);
+        if(!mediaRecorder){
+          updateChain(audioContext, input);
+        } else {
+          updateRecord(audioContext, input, destination);
+        }
       });
 
       // If the user switches preset, adjourn pedalboard
       document.getElementById('preset-menu').addEventListener('click', async function () {
-        updateChain(audioContext, input);
+        if(!mediaRecorder){
+          updateChain(audioContext, input);
+        } else {
+          updateRecord(audioContext, input, destination);
+        }
       });
 
       document.getElementById('rec-button').addEventListener('click', async function () {
@@ -99,7 +112,7 @@ document.getElementById('play-audio').addEventListener('click', async function (
           if (!mediaRecorder) {
             try {
               // Creating a MediaStreamDestination to capture the output of the signal chain 
-              const destination = audioContext.createMediaStreamDestination();
+              destination = audioContext.createMediaStreamDestination();
           
               // Link the last node of the audio chain to MediaStreamDestination
               updateRecord(audioContext, input, destination);
