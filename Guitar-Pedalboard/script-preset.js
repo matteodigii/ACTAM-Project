@@ -156,8 +156,12 @@ function savePreset() {
             if (userPresets[newPresetName]) {
                 userPresets[newPresetName] = createPresetData();
             } else {
-                // If yes (in defaultPresets), add it to userPresets
-                userPresets[newPresetName] = defaultPresets[newPresetName];
+                // If no it is in defaultPresets, and replace it
+                // Check if the selected preset is one of the default presets
+                if (defaultPresets[newPresetName]) {
+                    alert(`${newPresetName} already exists and it is a default preset`);
+                    return; // Exit the function if the preset is a default preset
+                }
             }
         } else {
             // If the user does not wish to replace it, exit the function
@@ -169,7 +173,7 @@ function savePreset() {
     }
 
     // Save the preset in the object userPresets
-    localStorage.setItem('userPresets', JSON.stringify(userPresets)); // Aggiorna localStorage
+    localStorage.setItem('userPresets', JSON.stringify(userPresets)); // Update localStorage
 
     // Update preset menu
     updatePresetMenu(newPresetName);
