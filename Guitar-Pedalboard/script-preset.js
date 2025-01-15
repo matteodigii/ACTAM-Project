@@ -149,6 +149,11 @@ function updatePedalState(pedalContainer, led, button, isOn) {
 // Save Preset Function
 function savePreset() {
     const newPresetName = prompt("Enter the name of the new preset:");
+
+    // Exit the function if the user presses "Cancel" (prompt returns null)
+    if (newPresetName === null) {
+        return;
+    }
     // Verify if it already exists a preset with the same name in userPresets or defaultPresets
     if (userPresets[newPresetName] || defaultPresets[newPresetName]) {
         if (confirm(`The preset "${newPresetName}" already exists. Do you want to replace it?`)) {
@@ -276,9 +281,6 @@ function deletePreset() {
         alert(`Preset \"${selectedPreset}\" successfully deleted!`);
     }
 }
-
-
-
 
 function renamePreset() {
     const selectedPreset = presetMenu.value; // Get the selected preset from the dropdown menu
