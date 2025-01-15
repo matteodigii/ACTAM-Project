@@ -134,9 +134,6 @@ It's also important to stress that latency cannot be totally eliminated in such 
 However it could be lowered depending on the quality of the used hardware, the ADC in the Audio Interface: in fact we saw better overall performances with the Steinberger rather than with the Scarlett (model specified below). 
 
 ## 2. Possible Improvements
-- Adding a **login policy** to allow registered users to save in an external Server their custom made preset so that only them using a different laptop can access those.
-
-- Developing more pedals and implement the possibility for the user to choose which of them to add in his customized pedalboard.
 
 - Testing also on other audio interfaces and browsers to ensure compatibility. At the moment, only **Steinberg UR22mkII**, **Scarlett Solo Gen3**, as audio interfaces, and **Google Chrome**, as browser, are taken into account (the latter because it’s the most world-wide spread one).
 
