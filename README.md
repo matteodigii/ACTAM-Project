@@ -43,7 +43,7 @@ Designed paying attention to the newest trends in audio processing while still m
 Each one of them emulates a specific guitar-type effect, there are five of them, two pre-processors, a modulation and two ambient ones: 
 -	**Compressor**, speaks for itself.
 -	**Overdrive**, distorts the sound ranging from mild booster to acid 70s "Led Zeppelin" type sound.
--	**Reverb**, adds a nice lasting tail to your sound, seems to be in a concert hall right?.
+-	**Reverb**, adds a nice lasting tail to your sound, seems to be in a concert hall right?
 -	**Tremolo**, emulates a typical 60s surfing/waving sound to enrich your sound palette.
 -	**Delay**, adds delay repetition to your input signal, the cherry on the top.
 
